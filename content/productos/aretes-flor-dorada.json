@@ -1,0 +1,9 @@
+{
+  "nombre": "Aretes flor dorada",
+  "tipo": "aretes",
+  "image": "/images/productos/aretes-flor-dorada.webp",
+  "galeria": [],
+  "agotado": false,
+  "destacado": true,
+  "orden": 10
+}

@@ -1,0 +1,74 @@
+{
+  "calidad": {
+    "titulo": "Calidad que perdura",
+    "texto": "Todas nuestras piezas tienen **baño de rodio**, un material que las protege y conserva su brillo para que te acompañen por mucho tiempo.",
+    "foto": "/images/productos/pulsera-con-encanto.webp",
+    "beneficios": [
+      {
+        "titulo": "No se oxida",
+        "texto": "Lúcelas a diario sin preocuparte por el paso del tiempo."
+      },
+      {
+        "titulo": "No se mancha",
+        "texto": "Su color se mantiene igual que el primer día."
+      },
+      {
+        "titulo": "Acabado en espejo",
+        "texto": "Un baño pulido que refleja la luz y hace brillar cada detalle."
+      }
+    ],
+    "cierre": "Hechas para durar, como lo que sientes"
+  },
+  "cuidado": {
+    "titulo": "Cuida tus piezas",
+    "texto": "Con estos cuidados sencillos, el baño de rodio conserva su acabado en espejo por mucho más tiempo.",
+    "consejos": [
+      {
+        "titulo": "Póntelas de último",
+        "texto": "Primero el perfume, las cremas y el maquillaje; después tus accesorios."
+      },
+      {
+        "titulo": "Quítatelas antes del agua",
+        "texto": "Para bañarte, nadar en piscina o mar, o hacer ejercicio."
+      },
+      {
+        "titulo": "Límpialas con suavidad",
+        "texto": "Usa un paño suave y seco. Evita químicos, alcohol y productos abrasivos."
+      },
+      {
+        "titulo": "Guárdalas por separado",
+        "texto": "En su bolsita o estuche, para que no se rayen ni se enreden."
+      },
+      {
+        "titulo": "Lejos de la humedad",
+        "texto": "Evita dejarlas en el baño; un lugar seco las mantiene como nuevas."
+      },
+      {
+        "titulo": "Trátalas con cariño",
+        "texto": "Evita golpes y tirones; son detalles delicados hechos para acompañarte."
+      }
+    ]
+  },
+  "esencia": {
+    "frase": "Pequeños detalles, grandes emociones",
+    "texto": "Un accesorio no es solo un complemento. Es un detalle que habla de quién eres, de lo que sientes y de los momentos que quieres recordar."
+  },
+  "pedir": {
+    "titulo": "Cómo pedir",
+    "texto": "Te atendemos por WhatsApp, con calma y de forma personal.",
+    "pasos": [
+      {
+        "titulo": "Elige tu pieza",
+        "texto": "Recorre el catálogo y guarda las que más te gusten."
+      },
+      {
+        "titulo": "Escríbenos",
+        "texto": "Desde cada pieza puedes enviarnos un mensaje con su nombre."
+      },
+      {
+        "titulo": "Confirmamos contigo",
+        "texto": "Te contamos precio, disponibilidad y forma de entrega."
+      }
+    ]
+  }
+}

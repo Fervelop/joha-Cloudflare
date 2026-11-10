@@ -1,0 +1,14 @@
+{
+  "activa": true,
+  "titulo": "Precios de lanzamiento",
+  "frase": "Brilla con tu esencia",
+  "texto": "Estamos estrenando JOHA y lo celebramos contigo con precios especiales de lanzamiento. Escríbenos y conoce el valor de tu pieza favorita.",
+  "imagen": "",
+  "boton_catalogo": "Ver el catálogo",
+  "mostrar_whatsapp": true,
+  "boton_whatsapp": "Pedir por WhatsApp",
+  "mensaje_whatsapp": "Hola JOHA, me interesa saber más sobre tus accesorios 🌷 Vi que están con precios de lanzamiento.",
+  "frecuencia": "visita",
+  "segundos_espera": 1,
+  "hasta": ""
+}

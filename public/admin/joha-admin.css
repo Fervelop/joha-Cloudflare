@@ -1,0 +1,85 @@
+/* Apariencia JOHA para el panel (Decap CMS).
+   Decap no ofrece temas: estos ajustes se apoyan en los nombres de sus componentes.
+   Tipografía: Atkinson Hyperlegible, diseñada para máxima legibilidad. */
+:root{
+  --j-rosa-suave:#FBE5E8;--j-rosa:#F6BFCB;--j-acento:#D98F9F;--j-dorado:#BD8A42;
+  --j-vino:#5B2937;--j-vino-2:#431d28;--j-fondo:#FBF4F3;--j-texto:#2b1a1f;--j-suave:#5f4a50;--j-borde:#e6d3d6;
+  --j-letra:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+/* ---------- tipografía general ---------- */
+html body,html body input,html body textarea,html body select,html body button,html body a,html body [class*="-css"]{
+  font-family:var(--j-letra)!important;letter-spacing:0!important}
+html body{background:var(--j-fondo);color:var(--j-texto);font-size:16px;-webkit-font-smoothing:antialiased}
+
+/* ---------- inicio de sesión ---------- */
+html body [class*="StyledAuthenticationPage"]{
+  background:radial-gradient(70% 60% at 50% 30%,var(--j-rosa) 0%,rgba(246,191,203,0) 70%),#FFF9F7}
+html body [class*="StyledAuthenticationPage"] [class*="CustomIconWrapper"]{width:auto;height:auto;margin-bottom:28px}
+html body [class*="StyledAuthenticationPage"] [class*="CustomIconWrapper"] img{width:260px;height:auto;max-height:none}
+html body [class*="StyledAuthenticationPage"]::before{
+  content:"Panel de administración";display:block;order:-1;font-family:"Bodoni Moda",serif;font-size:1.7rem;color:var(--j-vino);margin-bottom:18px}
+html body [class*="LoginButton"]{
+  background:var(--j-vino)!important;color:#FFF9F7!important;border-radius:999px!important;
+  padding:0 28px!important;height:52px!important;font-size:1.05rem!important;font-weight:700!important;box-shadow:0 14px 30px -16px rgba(91,41,55,.6)!important}
+html body [class*="LoginButton"]:hover{background:var(--j-vino-2)!important}
+html body [class*="GoBackButtonStyle"]{color:var(--j-vino)!important;font-size:1rem!important}
+
+/* ---------- cabecera ---------- */
+html body [class*="AppHeader-css"]{border-bottom:1px solid rgba(189,138,66,.35);box-shadow:none}
+html body [class*="AppHeaderLogo"]{height:auto!important;width:auto!important;max-width:none!important}
+html body [class*="AppHeaderLogo"] img{height:42px!important;width:auto!important;max-width:none!important;max-height:none!important}
+html body [class*="AppHeaderNavLink"],html body [class*="AppHeaderButton"]{font-size:1.05rem!important;font-weight:700!important;color:var(--j-suave)!important}
+html body .header-link-active,html body .header-link-active svg{color:var(--j-vino)!important}
+html body [class*="AppHeaderNavLink"]:hover{color:var(--j-vino)!important}
+html body [class*="AppHeaderQuickNewButton"]{background:var(--j-vino)!important;border-radius:999px!important;font-size:.95rem!important}
+
+/* ---------- barra lateral ---------- */
+html body [class*="SidebarHeading"],html body [class*="CollectionTopHeading"]{
+  font-family:"Bodoni Moda",serif!important;font-weight:400!important;color:var(--j-vino)!important;font-size:1.75rem!important}
+html body [class*="SidebarNavLink"]{font-size:1.08rem!important;font-weight:700!important;color:var(--j-suave)!important;padding:14px 18px!important}
+html body .sidebar-active{color:var(--j-vino)!important;background:var(--j-rosa-suave)!important;border-left-color:var(--j-dorado)!important}
+html body [class*="SidebarNavLink"]:hover{color:var(--j-vino)!important;background:var(--j-rosa-suave)!important}
+html body [class*="SearchInput"]{font-size:1rem!important}
+
+/* ---------- listas ---------- */
+html body [class*="CollectionTopDescription"]{font-size:1rem!important;line-height:1.6!important;color:var(--j-suave)!important;max-width:62ch}
+html body [class*="CollectionTopNewButton"]{background:var(--j-vino)!important;color:#FFF9F7!important;border-radius:999px!important;font-size:1rem!important;font-weight:700!important;padding:0 22px!important}
+html body [class*="CollectionTopNewButton"]:hover{background:var(--j-vino-2)!important}
+html body [class*="ControlButton"]{color:var(--j-vino)!important;font-size:1rem!important;font-weight:700!important}
+html body [class*="ListCardTitle"],html body [class*="CardHeading"]{font-size:1.15rem!important;font-weight:700!important;color:var(--j-texto)!important}
+html body [class*="ListCard-card"]{border-radius:16px;overflow:hidden}
+html body [class*="ListCard-card"]:hover{box-shadow:0 0 0 2px var(--j-rosa)}
+/* archivos de «Página» como tarjetas grandes */
+html body [class*="ListCardLink"]{padding:20px 22px!important}
+
+/* ---------- editor: etiquetas legibles ---------- */
+html body [class*="FieldLabel"]{
+  text-transform:none!important;font-size:1.02rem!important;font-weight:700!important;letter-spacing:0!important;
+  color:var(--j-vino)!important;background:transparent!important;padding:0 0 6px!important;border:0!important;margin:0!important}
+html body [class*="ControlContainer"]{margin-top:26px!important}
+html body [class*="ControlContainer"] input,html body [class*="ControlContainer"] textarea{
+  font-size:1.05rem!important;line-height:1.55!important;color:var(--j-texto)!important;border-radius:10px!important}
+html body [class*="ControlContainer"] input:focus,html body [class*="ControlContainer"] textarea:focus{border-color:var(--j-dorado)!important}
+html body [class*="ControlHint"]{font-size:.95rem!important;line-height:1.5!important;color:var(--j-suave)!important;margin-top:8px!important}
+html body [class*="singleValue"],html body [class*="option"]{font-size:1.02rem!important}
+html body [class*="TopBarContainer"]{border-radius:10px 10px 0 0!important}
+html body [class*="ExpandButton"]{font-size:1rem!important;font-weight:700!important}
+
+/* interruptores grandes y claros */
+html body [class*="ToggleBackground"]{background-color:#d8c6ca!important;width:46px!important;height:24px!important}
+html body [class*="ToggleContainer"][aria-checked="true"] [class*="ToggleBackground"],
+html body [aria-checked="true"] [class*="ToggleBackground"]{background-color:var(--j-dorado)!important}
+
+/* ---------- barra de herramientas del editor ---------- */
+html body [class*="ToolbarContainer"]{min-height:72px}
+html body [class*="ToolbarContainer"] button,html body [class*="ToolbarContainer"] [class*="DropdownButton"]{
+  font-size:.98rem!important;font-weight:700!important;border-radius:999px!important}
+html body [class*="SaveButton"]:not([class*="disabled"]){background:var(--j-vino)!important;color:#FFF9F7!important}
+html body [class*="BackCollection"]{font-size:1rem!important;font-weight:700!important}
+html body [class*="BackStatus"]{font-size:.85rem!important}
+
+/* botón Publicar en vino */
+html body [class*="PublishButton"]{background-color:var(--j-vino)!important;color:#FFF9F7!important;padding-left:22px!important;padding-right:44px!important;font-size:1rem!important}
+html body [class*="PublishButton"]:hover{background-color:var(--j-vino-2)!important}
+html body [class*="DropdownItem"]{font-size:1rem!important}

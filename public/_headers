@@ -1,0 +1,22 @@
+# Cabeceras de seguridad (Cloudflare Pages)
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+# Catálogo y textos: siempre frescos
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fotos: caché larga (cada foto nueva tiene su propio nombre)
+/images/*
+  Cache-Control: public, max-age=604800
+
+# Panel: fuera de buscadores, sin caché y con política de contenido propia
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://*.githubusercontent.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: data: https://api.github.com https://*.githubusercontent.com; frame-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'

@@ -1,0 +1,11 @@
+{
+  "name": "joha",
+  "private": true,
+  "description": "JOHA · catálogo y panel de administración (Cloudflare Pages)",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

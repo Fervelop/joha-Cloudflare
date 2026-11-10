@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<script src="js/tema.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JOHA Joyería</title>
+<meta name="description" content="JOHA, accesorios y joyería femenina con baño de rodio. Brilla con tu esencia.">
+<meta name="theme-color" content="#2a141b">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JOHA">
+<meta property="og:title" content="JOHA · Brilla con tu esencia">
+<meta property="og:description" content="Accesorios y joyería femenina con baño de rodio. Conoce el catálogo y pide por WhatsApp.">
+<meta property="og:image" content="%%SITE_URL%%/joha-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de JOHA junto a tres piezas de joyería en tarjetas rosadas">
+<meta property="og:url" content="%%SITE_URL%%/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blanco:#FFF9F7; --rosa-suave:#FBE5E8; --rosa:#F6BFCB; --rosa-acento:#D98F9F;
+  --dorado:#BD8A42; --vino:#5B2937;
+  --bg:var(--blanco); --surface:#fff; --ink:var(--vino); --ink-soft:#7d4d5a;
+  --line:color-mix(in srgb,var(--dorado) 45%,transparent);
+  --band-bg:var(--vino); --band-ink:var(--rosa-suave);
+  --serif:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --script:"Pinyon Script",cursive;
+  --sans:"Jost",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#2a141b; --surface:#361b23; --ink:#FBE5E8; --ink-soft:#e2b9c3;
+    --band-bg:#1e0d13; --band-ink:#FBE5E8; --rosa-suave:#3d1f28; --logo-slogan:#E8C9A0;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2a141b; --surface:#361b23; --ink:#FBE5E8; --ink-soft:#e2b9c3;
+  --band-bg:#1e0d13; --band-ink:#FBE5E8; --rosa-suave:#3d1f28; --logo-slogan:#E8C9A0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--dorado);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.theme{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:border-color .2s ease,color .2s ease}
+.theme svg{width:19px;height:19px;transition:transform .35s var(--ease-out)}
+.theme .sun{display:none}
+@media (hover:hover) and (pointer:fine){.theme:hover{border-color:var(--dorado);color:var(--dorado)}}
+.theme:active svg{transform:rotate(-25deg) scale(.9)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme .sun{display:block}:root:not([data-theme="light"]) .theme .moon{display:none}}
+:root[data-theme="dark"] .theme .sun{display:block}:root[data-theme="dark"] .theme .moon{display:none}
+@media (prefers-reduced-motion:reduce){.theme svg{transition:none}}
+.mark{display:block;line-height:0}
+.mark svg{display:block;height:44px;width:auto}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:.95rem}
+.nav ul a:hover{color:var(--dorado)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:.95rem;text-decoration:none;border-radius:999px;padding:12px 22px;border:1px solid var(--vino);cursor:pointer;transition:background .2s,color .2s}
+.btn-fill{background:var(--vino);color:#FFF9F7}
+.btn-fill:hover{background:#431d28}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--dorado)}
+.btn svg{width:18px;height:18px;flex:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-fill{background:var(--rosa);color:#5B2937;border-color:var(--rosa)}}
+:root[data-theme="dark"] .btn-fill{background:var(--rosa);color:#5B2937;border-color:var(--rosa)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(60% 70% at 85% 30%,color-mix(in srgb,var(--rosa) 55%,transparent),transparent 70%),
+  var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:48px;padding:64px 0 96px}
+.hero h1{margin:0 0 34px}
+.hero h1 .logo-full{width:clamp(260px,34vw,440px)}
+.rose{display:block;width:46px;height:46px;color:var(--dorado);margin-bottom:22px}
+.hero p.lede{max-width:34ch;font-size:1.15rem;color:var(--ink-soft);margin:0 0 34px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* tarjeta: the JOHA display card, with its hang hole.
+   Photos are never cropped: the product sits whole (contain) over a blurred copy of itself. */
+.tarjeta{position:relative;border-radius:46px 46px 30px 30px;overflow:hidden;background:var(--rosa-suave);box-shadow:0 30px 60px -30px rgba(91,41,55,.45);aspect-ratio:4/5}
+.tarjeta::before{content:"";position:absolute;z-index:3;top:16px;left:50%;width:30px;height:16px;transform:translateX(-50%);border-radius:10px;background:var(--bg);box-shadow:inset 0 2px 3px rgba(91,41,55,.25)}
+.ph{position:absolute;inset:0}
+.ph img{position:absolute;inset:0;width:100%;height:100%}
+.ph .fill{object-fit:cover;filter:blur(18px) saturate(1.1);transform:scale(1.15)}
+.ph .main{object-fit:contain}
+
+/* hero: roulette of display cards */
+.stack{position:relative;justify-self:center;width:min(540px,100%);aspect-ratio:1.18/1}
+.stack .tarjeta::before{display:none}
+.rc{position:absolute;top:50%;left:50%;width:64%;aspect-ratio:1/1.04;
+  transform:translate(-50%,-50%) translateX(var(--x,0)) scale(var(--s,1)) rotate(var(--r,0deg));
+  opacity:var(--o,1);z-index:var(--z,1);
+  transition:transform 1s var(--ease-in-out),opacity .8s var(--ease-in-out)}
+.rc[data-pos="center"]{--x:0%;--s:1;--r:0deg;--o:1;--z:3}
+.rc[data-pos="left"]{--x:-44%;--s:.76;--r:-6deg;--o:.92;--z:2}
+.rc[data-pos="right"]{--x:44%;--s:.76;--r:6deg;--o:.92;--z:2}
+.rc[data-pos="hidden"]{--x:0%;--s:.5;--r:0deg;--o:0;--z:1}
+.sparkle{position:absolute;z-index:5;color:var(--dorado);width:22px;height:22px}
+.s1{right:4%;top:2%}.s2{left:6%;bottom:6%;width:16px;height:16px}
+
+:root{--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);--logo-slogan:#6E4318}
+.logo-full{display:block;width:100%;height:auto;overflow:visible}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1,.hero .lede,.hero .actions{animation:rise .9s var(--ease-out) both}
+  .hero .lede{animation-delay:.2s}.hero .actions{animation-delay:.3s}
+  .stack{animation:rise 1.1s .15s var(--ease-out) both}
+  .sparkle{animation:twinkle 3.6s ease-in-out infinite}.s2{animation-delay:1.4s}
+}
+@media (prefers-reduced-motion:reduce){
+  /* sin desplazamientos: solo la tarjeta central, con fundido */
+  .rc,.rc[data-pos]{transition:opacity .9s ease;--x:0%;--s:1;--r:0deg}
+  .rc[data-pos="left"],.rc[data-pos="right"],.rc[data-pos="hidden"]{--o:0}
+}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+
+/* ---------- Catalog ---------- */
+.catalog{padding:96px 0 110px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;margin:0}
+.sec-head p{margin:10px 0 0;color:var(--ink-soft);max-width:44ch}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:.95rem;font-weight:400;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:9px 18px;cursor:pointer;transition:background .2s,border-color .2s}
+.filters button:hover{border-color:var(--dorado)}
+.filters button[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:#5B2937}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 32px;list-style:none;margin:0;padding:0}
+.item{position:relative}
+.item .open{all:unset;display:block;cursor:pointer;width:100%}
+.item .open:focus-visible .tarjeta{outline:2px solid var(--dorado);outline-offset:5px}
+.item .tarjeta{aspect-ratio:1/1.08}
+.item .ph .main{transition:transform .5s var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.item .open:hover .ph .main{transform:scale(1.04)}}
+.badge{position:absolute;z-index:4;top:14px;left:14px;font-family:var(--sans);font-weight:500;font-size:.85rem;line-height:1;padding:8px 14px;border-radius:999px;background:var(--vino);color:#FFF9F7}
+.item.agotado .ph .main,.lb.agotado .ph .main{filter:grayscale(.45) opacity(.82)}
+.lb .badge{position:static;display:inline-block;align-self:flex-start;margin-bottom:14px}
+.lb:not(.agotado) .badge{display:none}
+.item h3{font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.2;margin:18px 0 4px}
+.item .cat{font-size:.92rem;color:var(--ink-soft)}
+.item[hidden]{display:none}
+.vacio{grid-column:1/-1;color:var(--ink-soft);padding:40px 0}
+
+/* ---------- Calidad (rodio) ---------- */
+.calidad{padding:20px 0 110px}
+.calidad .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.calidad .tarjeta{aspect-ratio:1/1.12;max-width:440px;width:100%;justify-self:center}
+.calidad h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;margin:0 0 16px}
+.calidad .intro{font-size:1.15rem;color:var(--ink-soft);margin:0 0 34px;max-width:46ch}
+.calidad .intro strong{font-weight:500;color:var(--ink)}
+.bene{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.bene li{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;padding:20px 0;border-top:1px solid var(--line)}
+.bene li:last-child{border-bottom:1px solid var(--line)}
+.bene svg{width:44px;height:44px;color:var(--dorado)}
+.bene h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;margin:4px 0 4px}
+.bene p{margin:0;color:var(--ink-soft)}
+.calidad .cierre{font-family:var(--script);font-size:2.1rem;line-height:1.2;color:var(--rosa-acento);margin:28px 0 0}
+.rodio{display:inline-flex;align-items:center;gap:10px;margin:-14px 0 30px;font-size:.98rem;color:var(--ink)}
+.rodio svg{width:20px;height:20px;color:var(--dorado);flex:none}
+.lb .material{display:flex;gap:8px;align-items:center;font-size:.95rem;margin:0 0 14px;color:var(--ink)}
+.lb .material svg{width:18px;height:18px;color:var(--dorado);flex:none}
+
+/* ---------- Promo de lanzamiento ---------- */
+#promo{max-width:min(500px,100% - 32px)}
+.promo{position:relative;background:var(--bg);border-radius:30px;padding:46px 40px 38px;text-align:center;overflow:hidden;
+  background-image:radial-gradient(80% 60% at 50% 0%,color-mix(in srgb,var(--rosa) 60%,transparent),transparent 75%)}
+.promo:focus{outline:none}
+#promo .close{top:20px;right:20px}
+.promo::before{content:"";position:absolute;inset:10px;border:1px solid var(--line);border-radius:22px;pointer-events:none}
+.promo .logo-mark{display:block;width:120px;height:auto;margin:0 auto 22px}
+.promo-img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:20px;margin:0 0 22px;position:relative;z-index:1}
+[data-sec][hidden],.promo-img[hidden]{display:none!important}
+.promo h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,7vw,2.8rem);line-height:1.05;margin:0}
+.promo .script{font-family:var(--script);font-size:2rem;line-height:1.2;color:var(--rosa-acento);margin:8px 0 18px}
+.promo p.txt{color:var(--ink-soft);margin:0 auto 28px;max-width:34ch}
+.promo .actions{display:flex;flex-direction:column;gap:10px}
+.promo .btn{justify-content:center}
+.promo .sparkle{width:18px;height:18px}
+.promo .p1{left:34px;top:40px}.promo .p2{right:40px;top:96px;width:13px;height:13px}
+@media (prefers-reduced-motion:no-preference){
+  #promo[open] .promo{animation:promoIn .45s var(--ease-out)}
+  #promo[open]::backdrop{animation:fadeIn .35s ease}
+}
+@keyframes promoIn{from{opacity:0;transform:translateY(12px) scale(.96)}}
+@keyframes fadeIn{from{opacity:0}}
+
+/* ---------- Cuidado ---------- */
+.cuidado{background:var(--rosa-suave);padding:96px 0}
+.cuidado .head{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:end;margin-bottom:44px}
+.cuidado h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;margin:0}
+.cuidado .head p{margin:0;color:var(--ink-soft);font-size:1.15rem;max-width:48ch}
+.tips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);column-gap:72px}
+.tips li{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:22px 0;border-top:1px solid var(--line)}
+.tips svg{width:16px;height:16px;color:var(--dorado);margin-top:9px}
+.tips h3{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin:0 0 4px}
+.tips p{margin:0;color:var(--ink-soft)}
+
+
+/* ---------- Mi cotización ---------- */
+.cart-btn{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:border-color .2s ease,color .2s ease}
+.cart-btn svg{width:20px;height:20px}
+@media (hover:hover) and (pointer:fine){.cart-btn:hover{border-color:var(--dorado);color:var(--dorado)}}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--dorado);color:#fff;font-size:.75rem;font-weight:500;line-height:20px;text-align:center}
+.cart-count.pop{animation:pop-count .35s var(--ease-out)}
+@keyframes pop-count{0%{transform:scale(.6)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+/* control de cotización en cada tarjeta y en el detalle */
+.cot{margin-top:14px}
+.cot-add{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:44px;padding:10px 16px;
+  border-radius:999px;border:1px solid var(--line);color:var(--ink);font-weight:500;font-size:.95rem;text-align:center;transition:border-color .2s ease,background-color .2s ease,transform .16s var(--ease-out)}
+.cot-add svg{width:18px;height:18px;flex:none}
+.cot-add:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.cot-add:hover{border-color:var(--dorado);background:color-mix(in srgb,var(--rosa) 18%,transparent)}}
+.cot-add:focus-visible,.cot-step button:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
+.cot-on{display:flex;align-items:center;gap:10px;min-height:44px;flex-wrap:wrap}
+.cot-step{display:flex;align-items:center;border-radius:999px;background:var(--vino);color:#FFF9F7}
+.cot-step button{all:unset;cursor:pointer;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;font-size:1.15rem;transition:transform .16s var(--ease-out)}
+.cot-step button:active{transform:scale(.88)}
+.cot-step button[disabled]{opacity:.35;cursor:not-allowed}
+.cot-step button svg{width:17px;height:17px}
+.cot-step output{min-width:22px;text-align:center;font-weight:500}
+.cot-agot{margin:14px 0 0;min-height:44px;display:flex;align-items:center;font-size:.9rem;color:var(--ink-soft)}
+.cot-lbl{font-size:.88rem;color:var(--ink-soft);line-height:1.3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cot-step{background:var(--rosa);color:#5B2937}}
+:root[data-theme="dark"] .cot-step{background:var(--rosa);color:#5B2937}
+.lb .cot{margin:0}
+.lb .cot-add{min-height:48px;font-size:1rem}
+.lb .cot[hidden]{display:none}
+.lb .acciones{display:flex;flex-direction:column;gap:10px}
+.lb .acciones .btn{justify-content:center}
+.linea .borrar{all:unset;cursor:pointer;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;color:var(--ink-soft);transition:color .2s ease,background-color .2s ease}
+.linea .borrar svg{width:19px;height:19px}
+@media (hover:hover) and (pointer:fine){.linea .borrar:hover{color:#c0392b;background:color-mix(in srgb,#c0392b 12%,transparent)}}
+.linea .borrar:focus-visible{outline:2px solid var(--dorado)}
+.linea .der{display:flex;align-items:center;gap:4px}
+
+
+#cart{margin:0 0 0 auto;height:100%;max-height:100%;width:min(440px,100%);max-width:100%}
+#cart::backdrop{background:rgba(42,20,27,.55);backdrop-filter:blur(3px)}
+.drawer{height:100%;background:var(--bg);display:flex;flex-direction:column;border-left:1px solid var(--line);
+  transform:translateX(100%);transition:transform .42s cubic-bezier(.32,.72,0,1)}
+#cart.in .drawer{transform:none}
+.drawer header{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 18px;border-bottom:1px solid var(--line)}
+.drawer h2{font-family:var(--serif);font-weight:400;font-size:1.9rem;margin:0}
+.drawer .close{position:static}
+.drawer .cuerpo{flex:1;overflow:auto;padding:8px 22px 18px}
+.drawer .vacia{color:var(--ink-soft);padding:36px 0;text-align:center}
+.drawer .vacia .script{font-family:var(--script);font-size:2rem;color:var(--rosa-acento);display:block;margin-bottom:6px}
+.linea{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.linea .mini{width:64px;height:64px;border-radius:14px;overflow:hidden;background:var(--rosa-suave);position:relative}
+.linea .mini img{width:100%;height:100%;object-fit:cover;display:block}
+.linea h3{font-family:var(--serif);font-weight:400;font-size:1.12rem;line-height:1.2;margin:0 0 2px}
+.linea .cat{font-size:.85rem;color:var(--ink-soft)}
+.cant{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.cant button{all:unset;cursor:pointer;width:34px;height:34px;display:grid;place-items:center;font-size:1.1rem;color:var(--ink)}
+.cant button[disabled]{opacity:.35;cursor:not-allowed}
+.cant button:focus-visible{outline:2px solid var(--dorado);border-radius:50%}
+.cant output{min-width:22px;text-align:center;font-weight:500}
+.drawer label{display:block;font-size:.95rem;margin:18px 0 6px}
+.drawer textarea{width:100%;min-height:76px;resize:vertical;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.drawer textarea:focus{outline:2px solid var(--dorado);outline-offset:1px}
+.drawer footer{padding:18px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.drawer footer .btn{justify-content:center}
+.drawer footer .resumen{font-size:.95rem;color:var(--ink-soft);margin:0 0 4px}
+.drawer footer[hidden],.drawer [hidden]{display:none}
+.vaciar{all:unset;cursor:pointer;align-self:center;font-size:.9rem;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;padding:4px}
+@media (prefers-reduced-motion:reduce){.drawer{transition:none}.cart-count.pop{animation:none}}
+[data-carrito="off"] .cart-ui{display:none!important}
+/* sugerencias en el carrito */
+.sug{margin-top:22px}
+.sug h3{font-family:var(--serif);font-weight:400;font-size:1.2rem;margin:0 0 6px}
+.sug ul{list-style:none;margin:0;padding:0}
+.sug li{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.sug .mini{width:52px;height:52px;border-radius:12px;overflow:hidden;background:var(--rosa-suave)}
+.sug .mini img{width:100%;height:100%;object-fit:cover;display:block}
+.sug .nom{font-size:.98rem;line-height:1.25}
+.sug .cot{margin:0}
+.sug .cot-add{width:auto;min-height:38px;padding:6px 14px;font-size:.88rem;border-radius:999px}
+.sug .cot-add svg{display:none}
+/* botón flotante (celular y tablet) */
+.cart-fab{display:none}
+@media (max-width:900px){
+  .cart-fab{position:fixed;z-index:40;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;
+    display:grid;place-items:center;background:var(--vino);color:#FFF9F7;box-shadow:0 14px 30px -12px rgba(0,0,0,.55);transition:transform .16s var(--ease-out)}
+  .cart-fab svg{width:24px;height:24px}
+  .cart-fab:active{transform:scale(.92)}
+  .cart-fab:focus-visible{outline:2px solid var(--dorado);outline-offset:3px}
+  .cart-fab .cart-count{top:-2px;right:-2px}
+  .nav .cart-btn{display:none}
+  .aviso{bottom:calc(88px + env(safe-area-inset-bottom))}
+  body:has(#cart[open]) .cart-fab,body:has(#lb[open]) .cart-fab,body:has(#promo[open]) .cart-fab{display:none}
+}
+@media (max-width:900px){:root[data-theme="dark"] .cart-fab{background:var(--rosa);color:#5B2937}}
+.aviso{position:fixed;z-index:50;left:50%;bottom:22px;transform:translate(-50%,16px);opacity:0;display:flex;align-items:center;gap:14px;
+  max-width:min(520px,calc(100% - 32px));padding:12px 14px 12px 20px;border-radius:999px;background:var(--vino);color:#FFF9F7;box-shadow:0 18px 40px -18px rgba(0,0,0,.6);
+  transition:transform .25s var(--ease-out),opacity .2s ease;font-size:.95rem}
+.aviso.in{transform:translate(-50%,0);opacity:1}
+.aviso[hidden]{display:none}
+.aviso button{all:unset;cursor:pointer;flex:none;font-weight:500;padding:8px 14px;border-radius:999px;background:rgba(255,249,247,.16)}
+.aviso button:focus-visible{outline:2px solid var(--dorado)}
+@media (hover:hover) and (pointer:fine){.aviso button:hover{background:rgba(255,249,247,.26)}}
+@media (max-width:620px){.aviso{border-radius:18px;flex-wrap:wrap;bottom:16px}}
+@media (prefers-reduced-motion:reduce){.aviso{transition:opacity .2s ease;transform:translate(-50%,0)}}
+/* ---------- Band ---------- */
+.band{background:var(--band-bg);color:var(--band-ink);padding:110px 0;text-align:center;position:relative;overflow:hidden}
+.band .script{font-family:var(--script);font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.1;margin:0;color:var(--rosa)}
+.band p{max-width:52ch;margin:26px auto 0;font-size:1.15rem;color:color-mix(in srgb,var(--band-ink) 82%,transparent)}
+.band .rose{margin:0 auto 26px;color:var(--dorado)}
+.band::before,.band::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:min(560px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--dorado),transparent)}
+.band::before{top:44px}.band::after{bottom:44px}
+
+/* ---------- Pedido ---------- */
+.order{padding:100px 0}
+.order .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.order h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;margin:0 0 18px}
+.order .intro p{color:var(--ink-soft);margin:0 0 30px;max-width:38ch}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--serif);font-style:italic;font-size:2.6rem;line-height:1;color:var(--dorado)}
+.steps h3{font-family:var(--serif);font-weight:400;font-size:1.35rem;margin:2px 0 6px}
+.steps p{margin:0;color:var(--ink-soft)}
+
+/* ---------- Footer ---------- */
+footer{background:var(--rosa-suave);padding:64px 0 40px;text-align:center}
+footer .logo-full{width:230px;margin:0 auto 30px}
+footer .links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+footer small{color:var(--ink-soft);font-size:.85rem}
+
+/* ---------- Lightbox ---------- */
+dialog{border:0;padding:0;background:transparent;max-width:min(920px,100% - 32px);width:100%;color:var(--ink)}
+dialog::backdrop{background:rgba(42,20,27,.72);backdrop-filter:blur(4px)}
+.lb{display:grid;grid-template-columns:1.1fr .9fr;background:var(--bg);border-radius:30px;overflow:hidden}
+.lb .media{position:relative;aspect-ratio:1/1.05;overflow:hidden;background:var(--rosa-suave)}
+.thumbs{position:absolute;z-index:3;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:8px;padding:0 14px}
+.thumbs button{width:52px;height:52px;padding:0;border-radius:12px;overflow:hidden;border:2px solid rgba(255,249,247,.7);background:var(--rosa-suave);cursor:pointer;opacity:.75;transition:opacity .2s ease,border-color .2s ease,transform .2s var(--ease-out)}
+.thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs button[aria-current="true"]{opacity:1;border-color:var(--dorado)}
+@media (hover:hover) and (pointer:fine){.thumbs button:hover{opacity:1}}
+.thumbs button:active{transform:scale(.95)}
+.ph .main{transition:opacity .25s ease}
+.ph .main.swap{opacity:0}
+.mas-fotos{position:absolute;z-index:4;right:14px;bottom:14px;font-size:.8rem;font-weight:500;line-height:1;padding:7px 11px;border-radius:999px;background:rgba(255,249,247,.92);color:#5B2937}
+.lb .info{padding:44px 36px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.lb h3{font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.1;margin:0 0 6px}
+.lb .cat{color:var(--ink-soft);margin:0 0 22px}
+.lb .note{color:var(--ink-soft);margin:0 0 28px}
+.close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:1.4rem;cursor:pointer;line-height:1}
+.close:hover{border-color:var(--dorado)}
+@media (prefers-reduced-motion:no-preference){dialog[open] .lb{animation:pop .35s cubic-bezier(.2,.7,.2,1)}}
+@keyframes pop{from{opacity:0;transform:scale(.97)}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .cuidado .head{grid-template-columns:1fr;gap:16px}
+  .tips{grid-template-columns:1fr}
+  .calidad .wrap{grid-template-columns:1fr;gap:40px}
+  .calidad .tarjeta{max-width:360px;order:2}
+  .rodio{margin-top:-10px}
+  .hero .wrap{grid-template-columns:1fr;padding:40px 0 72px;gap:48px}
+  .hero .copy{text-align:center}
+  .hero h1 .logo-full{margin-inline:auto}
+  .hero p.lede{margin-inline:auto}
+  .hero .actions{justify-content:center}
+  .grid{grid-template-columns:repeat(2,1fr);gap:36px 20px}
+  .order .wrap{grid-template-columns:1fr;gap:32px}
+  .nav ul{display:none}
+}
+@media (max-width:620px){
+  .cot-add{font-size:.85rem;line-height:1.2;padding:8px 10px;border-radius:16px}
+  .cot-add svg{display:none}
+  .item .cot-lbl{display:none}
+  .cuidado{padding:72px 0}
+  .calidad{padding:0 0 80px}
+  .promo{padding:40px 24px 30px}
+  .bene h3{font-size:1.25rem}
+  .hero h1 .logo-full{width:min(280px,78vw)}
+  .hero h1{margin-bottom:24px}
+  .stack{width:100%}
+  .rc{width:68%}
+  .mark svg{height:38px}
+  .hero .actions .btn{flex:1 1 220px;justify-content:center}
+  .grid{gap:30px 14px}
+  .item h3{font-size:1.1rem;margin-top:12px}
+  .item .cat{font-size:.85rem}
+  .tarjeta{border-radius:30px 30px 20px 20px}
+  .tarjeta::before{top:10px;width:22px;height:12px}
+  .lb{grid-template-columns:1fr}
+  .lb .media{aspect-ratio:1/1}
+  .lb .info{padding:28px 24px 30px}
+  .nav .btn span{display:none}
+  .nav .btn{padding:11px}
+  .catalog,.order{padding:72px 0}
+  .band{padding:90px 0}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="jg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CC9640"/><stop offset=".55" stop-color="#A9691B"/><stop offset="1" stop-color="#BE8434"/></linearGradient>
+<linearGradient id="jl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B07A2E" stop-opacity="0"/><stop offset=".12" stop-color="#B07A2E"/><stop offset="1" stop-color="#9C6A22"/></linearGradient>
+<linearGradient id="jr" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#B07A2E" stop-opacity="0"/><stop offset=".12" stop-color="#B07A2E"/><stop offset="1" stop-color="#9C6A22"/></linearGradient></defs>
+  <symbol id="logo-full" viewBox="-4 -4 449 282"><g fill="url(#jg)"><path transform="translate(170 0)" d="M65.19,80.62C61.99,79.82 55.88,77.35 53.39,75.85C51.86,74.92 51.31,74.89 49.94,75.69C47.58,77.06 46.71,77.42 44.15,78.13C37.75,79.91 27.86,79.62 24.30,77.56C23.08,76.85 22.13,75.47 21.13,72.94C19.59,69.08 18.19,67.57 13.39,64.56C9.30,62.00 7.73,59.79 7.25,55.95C6.90,53.09 8.19,49.00 10.61,45.38C11.77,43.63 11.80,43.45 11.07,42.12C9.04,38.37 8.24,35.79 7.50,30.56C6.87,26.08 7.25,24.50 9.62,21.77C13.68,17.09 19.23,12.83 21.96,12.30C23.15,12.07 25.64,12.04 27.27,12.24C29.28,12.49 29.57,12.34 31.17,10.22C34.11,6.30 38.23,3.37 42.81,1.94C45.09,1.22 46.12,0.77 46.46,0.33C46.88,-0.20 48.11,-0.16 48.74,0.42C49.22,0.85 50.10,1.20 54.94,2.90C58.30,4.08 58.75,4.32 61.75,6.56C63.99,8.23 64.50,8.33 66.95,7.59C70.26,6.59 72.80,6.29 76.33,6.49C79.71,6.67 80.45,6.89 83.02,8.45C83.65,8.83 84.94,9.53 85.89,9.99C88.43,11.25 89.61,12.23 90.41,13.77C91.12,15.16 92.78,19.22 92.95,20.00C93.17,21.06 93.19,26.21 92.97,27.58C92.52,30.39 92.56,30.46 96.13,33.73C99.56,36.87 102.03,39.76 103.15,41.97C104.29,44.22 103.93,45.39 101.15,48.47C99.40,50.40 99.05,50.84 96.43,54.31C93.62,58.03 93.41,58.27 91.87,59.45C90.18,60.74 90.09,60.94 90.05,63.24C89.99,68.07 86.66,73.25 81.76,76.16C79.83,77.31 78.29,77.86 74.68,78.68C73.65,78.91 72.27,79.31 71.62,79.57C68.98,80.60 68.79,80.65 67.19,80.70C66.36,80.72 65.47,80.68 65.19,80.62ZM69.23,77.19C69.66,77.08 70.60,76.74 71.32,76.43C72.56,75.89 73.27,75.68 75.56,75.19C77.51,74.77 81.83,72.43 83.03,71.15C85.00,69.04 87.22,64.13 86.93,62.54C86.72,61.44 85.94,61.27 83.79,61.87C80.27,62.85 76.17,63.22 71.42,62.99C66.08,62.74 66.32,62.72 64.62,63.47C60.67,65.22 56.07,65.89 50.88,65.49C47.83,65.25 47.17,65.70 48.33,67.22C48.79,67.83 54.80,73.08 55.68,73.65C56.65,74.28 59.79,75.87 61.03,76.36C61.75,76.65 62.47,76.80 64.02,77.00C65.13,77.14 66.07,77.28 66.11,77.32C66.24,77.45 68.50,77.36 69.23,77.19ZM39.57,75.93C42.42,75.64 44.34,75.08 46.76,73.87C48.23,73.13 48.63,72.79 48.62,72.27C48.62,71.67 48.54,71.56 47.37,70.63C46.77,70.15 45.46,68.89 44.48,67.84C40.41,63.50 40.22,63.35 37.97,62.62C34.97,61.63 33.61,60.74 31.04,58.05C28.80,55.70 28.32,55.35 26.26,54.50C21.75,52.65 19.53,51.11 16.69,47.88C14.24,45.10 13.57,45.30 11.85,49.32C10.98,51.36 10.83,52.15 10.92,54.44C11.07,58.62 11.79,59.61 17.35,63.31C21.42,66.02 21.59,66.18 22.50,68.22C24.63,72.97 26.43,75.09 28.88,75.76C30.13,76.10 36.92,76.21 39.57,75.93ZM57.19,62.83C59.48,62.43 60.58,62.00 63.81,60.27C64.09,60.12 64.90,59.72 65.61,59.37C66.33,59.02 67.36,58.42 67.92,58.03C68.47,57.63 69.55,56.92 70.33,56.44C72.89,54.85 74.34,53.40 76.46,50.28C78.05,47.96 78.45,47.01 78.08,46.44C77.64,45.78 77.25,45.90 74.44,47.52C69.92,50.13 65.83,51.41 60.19,52.00C56.76,52.36 54.61,52.69 52.69,53.15C50.00,53.79 49.03,53.72 44.00,52.55C37.81,51.11 34.94,49.90 31.31,47.18C29.84,46.08 29.29,45.86 28.81,46.18C27.54,47.01 28.42,50.42 30.61,53.12C33.73,56.98 37.02,59.29 41.50,60.79C42.64,61.17 43.97,61.65 44.46,61.86C45.71,62.37 47.19,62.72 48.81,62.87C49.57,62.94 50.38,63.02 50.62,63.05C51.52,63.16 56.22,63.00 57.19,62.83ZM79.06,60.19C80.54,59.93 85.26,58.70 86.61,58.23C89.97,57.05 91.17,56.06 93.46,52.58C95.22,49.90 95.63,49.38 97.66,47.25C99.94,44.85 100.15,44.41 99.58,43.19C98.70,41.30 96.61,38.52 94.54,36.48C91.83,33.81 91.39,33.81 89.61,36.46C89.13,37.18 88.19,38.42 87.51,39.23C86.84,40.03 85.86,41.28 85.34,42.01C84.81,42.74 84.04,43.72 83.63,44.17C82.63,45.27 82.33,45.76 81.93,46.88C80.55,50.74 76.40,55.88 72.88,58.10C71.36,59.05 70.88,59.84 71.53,60.32C71.90,60.59 77.30,60.50 79.06,60.19ZM26.17,50.09C26.55,49.63 26.38,48.96 25.28,46.73C23.52,43.15 22.28,38.78 22.16,35.75C21.99,31.22 23.69,26.78 26.49,24.43C27.91,23.24 27.92,23.21 28.01,20.69C28.08,18.88 28.14,18.41 28.42,17.51C29.15,15.18 28.57,14.58 25.89,14.88C23.12,15.19 21.90,15.70 18.50,17.95C15.56,19.90 12.82,22.66 11.64,24.86C10.51,26.99 10.42,31.15 11.44,34.56C12.25,37.28 12.38,37.64 12.99,38.94C14.93,43.05 18.04,46.37 22.45,49.04C24.94,50.55 25.62,50.74 26.17,50.09ZM52.75,49.88C54.88,49.41 55.52,49.14 56.91,48.15C57.47,47.74 58.55,47.05 59.30,46.61C61.77,45.16 62.60,43.99 61.67,43.26C61.36,43.02 61.18,43.00 59.01,43.00C55.35,43.00 51.43,42.49 49.56,41.76C47.67,41.03 46.68,40.12 45.81,38.31C45.28,37.22 42.85,34.55 41.32,33.41C40.23,32.58 39.25,33.42 39.25,35.18C39.25,39.45 41.82,44.61 45.57,47.88C48.84,50.72 48.89,50.74 52.75,49.88ZM42.26,49.75C42.78,49.47 42.58,48.90 41.49,47.62C40.76,46.76 37.81,42.26 36.76,40.41C36.32,39.64 35.43,38.34 34.79,37.53C32.91,35.18 31.41,31.67 31.12,28.94C30.92,27.03 30.73,26.62 29.96,26.43C28.67,26.11 26.37,28.65 25.82,31.01C25.46,32.51 25.64,36.80 26.13,38.65C27.00,41.93 31.00,45.83 35.88,48.17C38.77,49.56 41.39,50.21 42.26,49.75ZM64.01,49.31C68.19,48.54 72.38,46.60 75.57,43.95C80.67,39.73 81.65,32.35 77.74,27.64C76.03,25.59 75.21,26.01 75.09,29.00C74.92,33.34 72.27,37.16 63.36,46.00C61.86,47.48 60.61,48.81 60.57,48.96C60.36,49.70 61.36,49.80 64.01,49.31ZM59.86,40.38C60.29,40.32 61.41,40.09 62.33,39.87C64.81,39.29 64.94,39.13 65.08,36.49C65.17,34.86 65.12,34.49 64.72,34.13C64.21,33.65 63.78,33.77 61.77,34.98C60.54,35.73 59.86,35.90 56.87,36.19C54.37,36.44 53.74,36.37 51.25,35.56C49.39,34.95 48.95,34.89 48.60,35.21C47.58,36.13 49.72,38.97 52.15,39.90C53.58,40.45 57.64,40.70 59.86,40.38ZM83.53,39.94C84.31,39.41 86.98,35.69 87.89,33.85C90.06,29.52 90.38,23.87 88.71,19.54C88.47,18.91 88.12,17.85 87.95,17.18C87.38,15.05 86.50,13.90 84.68,12.89C84.13,12.58 82.98,11.93 82.11,11.42C78.83,9.51 77.54,9.18 73.38,9.20C69.17,9.21 67.20,9.47 66.50,10.13C65.51,11.05 66.33,12.22 70.03,15.17C72.38,17.05 73.48,18.45 74.45,20.83C75.09,22.42 75.49,22.87 76.55,23.26C79.04,24.17 80.55,25.49 81.63,27.69C82.41,29.27 82.61,32.02 82.18,35.32C81.77,38.55 81.74,38.89 81.87,39.34C82.13,40.28 82.71,40.49 83.53,39.94ZM36.98,35.70C37.50,35.43 37.73,34.76 37.99,32.75C38.12,31.75 38.34,30.48 38.48,29.93C38.62,29.39 38.83,28.40 38.94,27.75C39.29,25.62 39.73,24.62 41.21,22.47C42.85,20.10 42.67,19.12 40.59,19.12C37.73,19.12 34.65,21.11 33.30,23.82C31.77,26.89 32.55,31.98 34.97,34.75C35.89,35.80 36.36,36.02 36.98,35.70ZM69.25,35.06C69.93,34.71 71.11,32.83 71.85,30.94C72.97,28.05 72.83,24.12 71.50,21.44C69.79,17.98 66.81,16.32 61.75,16.00C57.66,15.74 55.50,16.34 55.50,17.73C55.50,18.66 56.01,19.02 58.63,19.93C59.44,20.21 62.15,21.65 63.84,22.69C66.18,24.14 67.46,27.57 67.55,32.62C67.59,35.07 68.03,35.69 69.25,35.06ZM55.68,33.62C58.01,32.73 58.98,29.76 57.24,28.82C56.61,28.49 56.25,28.62 55.25,29.56C54.03,30.71 53.25,30.81 52.50,29.90C51.74,28.97 51.24,26.90 51.68,26.46C51.98,26.17 57.23,26.15 58.21,26.44C59.50,26.82 60.63,28.29 60.64,29.60C60.65,30.33 60.60,30.52 60.10,31.67C59.29,33.54 59.96,34.25 61.70,33.38C64.09,32.17 64.83,30.40 64.03,27.81C62.95,24.30 60.07,22.97 55.16,23.69C52.91,24.03 52.16,24.45 51.62,25.69C51.43,26.14 51.34,26.21 50.64,26.41C48.22,27.10 47.37,30.75 49.30,32.15C49.86,32.55 51.89,33.56 52.69,33.83C53.39,34.06 54.77,33.97 55.68,33.62ZM45.05,32.31C45.15,32.21 45.26,31.88 45.30,31.59C45.72,27.98 46.15,27.01 48.31,24.81C49.76,23.33 50.56,22.88 52.81,22.24C54.97,21.63 55.33,20.99 54.13,19.87C49.44,15.46 42.65,19.69 42.28,27.26C42.15,30.01 43.99,33.37 45.05,32.31ZM33.87,20.13C35.96,18.34 39.46,16.86 43.22,16.20C44.16,16.03 45.32,15.80 45.78,15.69C46.39,15.55 47.15,15.50 48.47,15.52C50.31,15.54 50.31,15.54 51.94,15.01C55.13,13.96 58.49,13.62 62.02,13.99C64.49,14.25 64.59,13.75 62.57,11.37C60.09,8.47 57.18,6.61 53.92,5.82C53.45,5.71 52.13,5.29 51.00,4.91C47.58,3.73 46.63,3.83 42.13,5.81C39.14,7.13 38.06,7.84 36.03,9.80C32.63,13.08 31.25,15.64 31.25,18.66C31.25,21.12 32.15,21.62 33.87,20.13Z"/><path d="M109.11 95.5Q109.5 95.5 109.5 96.02Q109.5 96.54 109.11 96.54Q105.24 96.54 103.25 97.07Q101.26 97.59 100.63 98.89Q100 100.2 100 102.72V150.96Q100 160.23 92.61 165.61Q85.21 171 71.62 171Q66.47 171 63.23 169.76Q60 168.52 60 166.3Q60 164.83 61.55 163.61Q63.1 162.39 66.51 162.39Q69.65 162.39 71.32 163.41Q73 164.43 74.01 165.79Q75.02 167.16 76.02 168.19Q77.03 169.22 78.89 169.22Q82.55 169.22 84.39 166.09Q86.22 162.96 86.22 155.59V102.55Q86.22 100.03 85.31 98.76Q84.39 97.5 81.69 97.02Q78.99 96.54 73.55 96.54Q73.27 96.54 73.27 96.02Q73.27 95.5 73.55 95.5Q77.89 95.5 82.76 95.63Q87.62 95.76 92.92 95.76Q97.79 95.76 101.85 95.63Q105.91 95.5 109.11 95.5Z"/><path d="M160.25 171.5Q151.79 171.5 144.92 168.45Q138.04 165.4 133.17 160.02Q128.29 154.64 125.64 147.64Q123 140.64 123 132.75Q123 123.06 126.7 115.77Q130.4 108.47 136.51 103.63Q142.62 98.78 149.91 96.39Q157.2 94 164.37 94Q173.06 94 179.94 97.17Q186.81 100.34 191.63 105.72Q196.45 111.1 198.97 117.92Q201.5 124.74 201.5 131.91Q201.5 140.28 198.21 147.46Q194.92 154.64 189.22 160.02Q183.52 165.4 176.06 168.45Q168.6 171.5 160.25 171.5ZM164.23 168.67Q171.26 168.67 176.85 164.83Q182.44 160.99 185.7 153.52Q188.95 146.06 188.95 135.35Q188.95 124.25 185.39 115.62Q181.82 106.99 175.26 102.03Q168.7 97.06 159.6 97.06Q148.1 97.06 141.82 105.42Q135.55 113.77 135.55 128.42Q135.55 137.06 137.66 144.41Q139.77 151.77 143.61 157.24Q147.45 162.72 152.7 165.69Q157.95 168.67 164.23 168.67Z"/><path d="M275.48 105.33Q275.48 101.89 274.84 100.12Q274.2 98.34 272.18 97.63Q270.16 96.92 266.01 96.92Q265.68 96.92 265.68 96.21Q265.68 95.5 266.01 95.5Q268.83 95.5 272.45 95.68Q276.07 95.86 280.85 95.86Q284.75 95.86 288.55 95.68Q292.35 95.5 295.16 95.5Q295.5 95.5 295.5 96.21Q295.5 96.92 295.16 96.92Q291.33 96.92 289.36 97.57Q287.39 98.22 286.73 99.94Q286.07 101.66 286.07 105.09V159.91Q286.07 163.34 286.73 165.12Q287.39 166.9 289.36 167.49Q291.33 168.08 295.16 168.08Q295.5 168.08 295.5 168.79Q295.5 169.5 295.16 169.5Q292.35 169.5 288.55 169.38Q284.75 169.26 280.85 169.26Q276.07 169.26 272.45 169.38Q268.83 169.5 266.01 169.5Q265.68 169.5 265.68 168.79Q265.68 168.08 266.01 168.08Q270.16 168.08 272.18 167.49Q274.2 166.9 274.84 165.12Q275.48 163.34 275.48 159.91ZM231.35 132.51V129.49H280.29V132.51ZM226.4 159.91V105.09Q226.4 101.66 225.74 99.94Q225.08 98.22 223.17 97.57Q221.25 96.92 217.42 96.92Q217.11 96.92 217.11 96.21Q217.11 95.5 217.42 95.5Q220.26 95.5 223.85 95.68Q227.44 95.86 231.33 95.86Q236.13 95.86 239.84 95.68Q243.55 95.5 246.49 95.5Q246.71 95.5 246.71 96.21Q246.71 96.92 246.49 96.92Q242.45 96.92 240.43 97.63Q238.41 98.34 237.71 100.12Q237.02 101.89 237.02 105.33V159.91Q237.02 163.34 237.69 165.12Q238.37 166.9 240.42 167.49Q242.48 168.08 246.49 168.08Q246.71 168.08 246.71 168.79Q246.71 169.5 246.49 169.5Q243.42 169.5 239.78 169.38Q236.13 169.26 231.33 169.26Q227.41 169.26 223.74 169.38Q220.07 169.5 217.22 169.5Q217 169.5 217 168.79Q217 168.08 217.22 168.08Q221.15 168.08 223.09 167.49Q225.02 166.9 225.71 165.12Q226.4 163.34 226.4 159.91Z"/><path d="M329.41 140.33 330.88 137.33H361.73L362.5 140.33ZM387.98 168.07Q388.5 168.07 388.5 168.79Q388.5 169.5 387.98 169.5Q384.74 169.5 381.25 169.26Q377.76 169.02 374.54 169.02Q370.89 169.02 368.21 169.26Q365.53 169.5 362.24 169.5Q361.8 169.5 361.8 168.79Q361.8 168.07 362.24 168.07Q367.21 168.07 368.17 166.16Q369.13 164.24 366.56 158.63L343.5 108.1L347.99 100.12L326.25 153.21Q323.34 160.39 326.05 164.23Q328.76 168.07 335.29 168.07Q335.84 168.07 335.84 168.79Q335.84 169.5 335.29 169.5Q331.99 169.5 329.23 169.26Q326.48 169.02 322.29 169.02Q318.12 169.02 315.59 169.26Q313.06 169.5 309.44 169.5Q309 169.5 309 168.79Q309 168.07 309.44 168.07Q312.41 168.07 314.58 166.75Q316.74 165.43 318.83 161.95Q320.92 158.46 323.52 152.06L347.18 94.4Q347.32 94.05 348.09 94Q348.87 93.96 348.98 94.4L375.97 153.19Q378.58 158.88 380.53 162.16Q382.47 165.43 384.25 166.75Q386.04 168.07 387.98 168.07Z"/><path d="M218.5 272 C212 265.5 200.5 257 200.5 247.5 C200.5 241.5 205 238 209.5 238 C213.5 238 216.8 240.5 218.5 244 C220.2 240.5 223.5 238 227.5 238 C232 238 236.5 241.5 236.5 247.5 C236.5 257 225 265.5 218.5 272 Z"/></g>
+<path fill="var(--logo-slogan,#6E4318)" d="M-1.76 219.8V200.2H6.8Q10.1 200.2 11.91 201.53Q13.73 202.86 13.73 205.25Q13.73 206.83 12.99 207.93Q12.25 209.03 11.01 209.6Q9.76 210.16 8.27 210.16L8.76 209.44Q10.57 209.44 11.92 210.02Q13.26 210.6 14.01 211.74Q14.76 212.88 14.76 214.55Q14.76 217.05 12.91 218.42Q11.05 219.8 7.36 219.8ZM0.52 217.92H7.29Q9.81 217.92 11.14 217.07Q12.47 216.22 12.47 214.37Q12.47 212.51 11.14 211.66Q9.81 210.8 7.29 210.8H0.3V208.92H6.62Q8.91 208.92 10.18 208.07Q11.44 207.21 11.44 205.5Q11.44 203.79 10.18 202.93Q8.91 202.08 6.62 202.08H0.52ZM22.6 219.8V200.2H30.02Q33.78 200.2 35.93 201.99Q38.08 203.77 38.08 206.95Q38.08 209.04 37.11 210.54Q36.14 212.05 34.34 212.86Q32.54 213.66 30.02 213.66H23.85L24.87 212.61V219.8ZM35.9 219.8 30.86 212.69H33.35L38.4 219.8ZM24.87 212.81 23.85 211.71H29.97Q32.83 211.71 34.31 210.46Q35.79 209.2 35.79 206.95Q35.79 204.67 34.31 203.43Q32.83 202.19 29.97 202.19H23.85L24.87 201.07ZM47.36 219.8V200.2H49.64V219.8ZM60.43 219.8V200.2H62.7V217.81H73.57V219.8ZM80.93 219.8V200.2H83.2V217.81H94.07V219.8ZM99.93 219.8 108.86 200.2H111.12L120.07 219.8H117.66L109.51 201.5H110.45L102.3 219.8ZM103.52 214.67 104.19 212.81H115.48L116.16 214.67ZM149.5 219.99Q147.29 219.99 145.41 219.25Q143.53 218.51 142.15 217.16Q140.76 215.8 139.99 213.98Q139.21 212.16 139.21 210Q139.21 207.84 139.99 206.02Q140.76 204.2 142.16 202.84Q143.55 201.49 145.43 200.75Q147.31 200.01 149.52 200.01Q151.71 200.01 153.59 200.74Q155.47 201.48 156.79 202.94L155.32 204.38Q154.14 203.17 152.7 202.61Q151.26 202.05 149.61 202.05Q147.87 202.05 146.39 202.65Q144.91 203.24 143.81 204.31Q142.71 205.39 142.11 206.84Q141.5 208.29 141.5 210Q141.5 211.71 142.11 213.16Q142.71 214.61 143.81 215.69Q144.91 216.76 146.39 217.35Q147.87 217.95 149.61 217.95Q151.26 217.95 152.7 217.39Q154.14 216.82 155.32 215.59L156.79 217.04Q155.47 218.5 153.59 219.24Q151.71 219.99 149.5 219.99ZM173.51 219.99Q171.29 219.99 169.4 219.24Q167.5 218.49 166.11 217.14Q164.71 215.78 163.94 213.97Q163.17 212.16 163.17 210Q163.17 207.84 163.94 206.03Q164.71 204.22 166.11 202.86Q167.51 201.5 169.39 200.76Q171.28 200.01 173.51 200.01Q175.74 200.01 177.62 200.75Q179.5 201.5 180.89 202.85Q182.29 204.2 183.06 206.02Q183.83 207.84 183.83 210Q183.83 212.16 183.06 213.98Q182.29 215.8 180.89 217.15Q179.5 218.5 177.62 219.25Q175.74 219.99 173.51 219.99ZM173.51 217.95Q175.23 217.95 176.7 217.36Q178.16 216.76 179.25 215.68Q180.34 214.6 180.94 213.16Q181.55 211.71 181.55 209.99Q181.55 208.28 180.94 206.84Q180.34 205.4 179.25 204.32Q178.16 203.24 176.7 202.64Q175.23 202.05 173.51 202.05Q171.78 202.05 170.31 202.64Q168.84 203.24 167.75 204.32Q166.66 205.4 166.06 206.84Q165.45 208.28 165.45 209.99Q165.45 211.71 166.06 213.15Q166.66 214.6 167.75 215.68Q168.84 216.77 170.31 217.36Q171.78 217.95 173.51 217.95ZM192.74 219.8V200.2H194.62L207.97 216.95H206.98V200.2H209.26V219.8H207.38L194.03 203.05H195.02V219.8ZM236.86 219.8V202.19H230.02V200.2H245.98V202.19H239.14V219.8ZM261.5 219.99Q257.71 219.99 255.54 217.81Q253.38 215.63 253.38 211.4V200.2H255.65V211.31Q255.65 214.72 257.18 216.34Q258.71 217.95 261.52 217.95Q264.32 217.95 265.86 216.34Q267.39 214.72 267.39 211.31V200.2H269.62V211.4Q269.62 215.63 267.46 217.81Q265.29 219.99 261.5 219.99ZM292.02 219.8V200.2H305.58V202.19H294.29V217.81H305.98V219.8ZM294.08 210.82V208.87H304.35V210.82ZM321.49 219.99Q319.27 219.99 317.26 219.28Q315.25 218.57 314.13 217.46L315.01 215.69Q316.08 216.69 317.82 217.37Q319.56 218.04 321.48 218.04Q323.28 218.04 324.41 217.6Q325.54 217.16 326.08 216.4Q326.62 215.64 326.62 214.71Q326.62 213.6 325.97 212.93Q325.31 212.26 324.25 211.86Q323.18 211.46 321.9 211.17Q320.62 210.87 319.34 210.51Q318.05 210.14 316.99 209.56Q315.92 208.98 315.27 208Q314.61 207.02 314.61 205.46Q314.61 203.99 315.39 202.75Q316.17 201.52 317.78 200.76Q319.4 200.01 321.91 200.01Q323.59 200.01 325.23 200.47Q326.88 200.93 328.07 201.76L327.29 203.58Q326.04 202.74 324.63 202.35Q323.22 201.96 321.9 201.96Q320.17 201.96 319.04 202.42Q317.92 202.89 317.39 203.66Q316.87 204.42 316.87 205.38Q316.87 206.5 317.52 207.17Q318.18 207.84 319.24 208.23Q320.31 208.62 321.59 208.93Q322.87 209.23 324.15 209.59Q325.43 209.95 326.5 210.52Q327.56 211.1 328.22 212.07Q328.87 213.04 328.87 214.57Q328.87 216.02 328.08 217.26Q327.29 218.49 325.65 219.24Q324.01 219.99 321.49 219.99ZM337.02 219.8V200.2H350.58V202.19H339.29V217.81H350.98V219.8ZM339.08 210.82V208.87H349.35V210.82ZM359.74 219.8V200.2H361.62L374.97 216.95H373.98V200.2H376.26V219.8H374.38L361.03 203.05H362.02V219.8ZM395 219.99Q392.79 219.99 390.91 219.25Q389.03 218.51 387.65 217.16Q386.26 215.8 385.49 213.98Q384.71 212.16 384.71 210Q384.71 207.84 385.49 206.02Q386.26 204.2 387.66 202.84Q389.05 201.49 390.93 200.75Q392.81 200.01 395.02 200.01Q397.21 200.01 399.09 200.74Q400.97 201.48 402.29 202.94L400.82 204.38Q399.64 203.17 398.2 202.61Q396.76 202.05 395.11 202.05Q393.37 202.05 391.89 202.65Q390.41 203.24 389.31 204.31Q388.21 205.39 387.61 206.84Q387 208.29 387 210Q387 211.71 387.61 213.16Q388.21 214.61 389.31 215.69Q390.41 216.76 391.89 217.35Q393.37 217.95 395.11 217.95Q396.76 217.95 398.2 217.39Q399.64 216.82 400.82 215.59L402.29 217.04Q400.97 218.5 399.09 219.24Q397.21 219.99 395 219.99ZM411.36 219.8V200.2H413.64V219.8ZM422.43 219.8 431.36 200.2H433.62L442.57 219.8H440.16L432.01 201.5H432.95L424.8 219.8ZM426.02 214.67 426.69 212.81H437.98L438.66 214.67Z"/>
+<rect x="45" y="252.6" width="141" height="2.2" rx="1.1" fill="url(#jl)"/><rect x="251" y="252.6" width="144" height="2.2" rx="1.1" fill="url(#jr)"/></symbol>
+  <symbol id="logo-mark" viewBox="54 -4 341 180"><g fill="url(#jg)"><path transform="translate(170 0)" d="M65.19,80.62C61.99,79.82 55.88,77.35 53.39,75.85C51.86,74.92 51.31,74.89 49.94,75.69C47.58,77.06 46.71,77.42 44.15,78.13C37.75,79.91 27.86,79.62 24.30,77.56C23.08,76.85 22.13,75.47 21.13,72.94C19.59,69.08 18.19,67.57 13.39,64.56C9.30,62.00 7.73,59.79 7.25,55.95C6.90,53.09 8.19,49.00 10.61,45.38C11.77,43.63 11.80,43.45 11.07,42.12C9.04,38.37 8.24,35.79 7.50,30.56C6.87,26.08 7.25,24.50 9.62,21.77C13.68,17.09 19.23,12.83 21.96,12.30C23.15,12.07 25.64,12.04 27.27,12.24C29.28,12.49 29.57,12.34 31.17,10.22C34.11,6.30 38.23,3.37 42.81,1.94C45.09,1.22 46.12,0.77 46.46,0.33C46.88,-0.20 48.11,-0.16 48.74,0.42C49.22,0.85 50.10,1.20 54.94,2.90C58.30,4.08 58.75,4.32 61.75,6.56C63.99,8.23 64.50,8.33 66.95,7.59C70.26,6.59 72.80,6.29 76.33,6.49C79.71,6.67 80.45,6.89 83.02,8.45C83.65,8.83 84.94,9.53 85.89,9.99C88.43,11.25 89.61,12.23 90.41,13.77C91.12,15.16 92.78,19.22 92.95,20.00C93.17,21.06 93.19,26.21 92.97,27.58C92.52,30.39 92.56,30.46 96.13,33.73C99.56,36.87 102.03,39.76 103.15,41.97C104.29,44.22 103.93,45.39 101.15,48.47C99.40,50.40 99.05,50.84 96.43,54.31C93.62,58.03 93.41,58.27 91.87,59.45C90.18,60.74 90.09,60.94 90.05,63.24C89.99,68.07 86.66,73.25 81.76,76.16C79.83,77.31 78.29,77.86 74.68,78.68C73.65,78.91 72.27,79.31 71.62,79.57C68.98,80.60 68.79,80.65 67.19,80.70C66.36,80.72 65.47,80.68 65.19,80.62ZM69.23,77.19C69.66,77.08 70.60,76.74 71.32,76.43C72.56,75.89 73.27,75.68 75.56,75.19C77.51,74.77 81.83,72.43 83.03,71.15C85.00,69.04 87.22,64.13 86.93,62.54C86.72,61.44 85.94,61.27 83.79,61.87C80.27,62.85 76.17,63.22 71.42,62.99C66.08,62.74 66.32,62.72 64.62,63.47C60.67,65.22 56.07,65.89 50.88,65.49C47.83,65.25 47.17,65.70 48.33,67.22C48.79,67.83 54.80,73.08 55.68,73.65C56.65,74.28 59.79,75.87 61.03,76.36C61.75,76.65 62.47,76.80 64.02,77.00C65.13,77.14 66.07,77.28 66.11,77.32C66.24,77.45 68.50,77.36 69.23,77.19ZM39.57,75.93C42.42,75.64 44.34,75.08 46.76,73.87C48.23,73.13 48.63,72.79 48.62,72.27C48.62,71.67 48.54,71.56 47.37,70.63C46.77,70.15 45.46,68.89 44.48,67.84C40.41,63.50 40.22,63.35 37.97,62.62C34.97,61.63 33.61,60.74 31.04,58.05C28.80,55.70 28.32,55.35 26.26,54.50C21.75,52.65 19.53,51.11 16.69,47.88C14.24,45.10 13.57,45.30 11.85,49.32C10.98,51.36 10.83,52.15 10.92,54.44C11.07,58.62 11.79,59.61 17.35,63.31C21.42,66.02 21.59,66.18 22.50,68.22C24.63,72.97 26.43,75.09 28.88,75.76C30.13,76.10 36.92,76.21 39.57,75.93ZM57.19,62.83C59.48,62.43 60.58,62.00 63.81,60.27C64.09,60.12 64.90,59.72 65.61,59.37C66.33,59.02 67.36,58.42 67.92,58.03C68.47,57.63 69.55,56.92 70.33,56.44C72.89,54.85 74.34,53.40 76.46,50.28C78.05,47.96 78.45,47.01 78.08,46.44C77.64,45.78 77.25,45.90 74.44,47.52C69.92,50.13 65.83,51.41 60.19,52.00C56.76,52.36 54.61,52.69 52.69,53.15C50.00,53.79 49.03,53.72 44.00,52.55C37.81,51.11 34.94,49.90 31.31,47.18C29.84,46.08 29.29,45.86 28.81,46.18C27.54,47.01 28.42,50.42 30.61,53.12C33.73,56.98 37.02,59.29 41.50,60.79C42.64,61.17 43.97,61.65 44.46,61.86C45.71,62.37 47.19,62.72 48.81,62.87C49.57,62.94 50.38,63.02 50.62,63.05C51.52,63.16 56.22,63.00 57.19,62.83ZM79.06,60.19C80.54,59.93 85.26,58.70 86.61,58.23C89.97,57.05 91.17,56.06 93.46,52.58C95.22,49.90 95.63,49.38 97.66,47.25C99.94,44.85 100.15,44.41 99.58,43.19C98.70,41.30 96.61,38.52 94.54,36.48C91.83,33.81 91.39,33.81 89.61,36.46C89.13,37.18 88.19,38.42 87.51,39.23C86.84,40.03 85.86,41.28 85.34,42.01C84.81,42.74 84.04,43.72 83.63,44.17C82.63,45.27 82.33,45.76 81.93,46.88C80.55,50.74 76.40,55.88 72.88,58.10C71.36,59.05 70.88,59.84 71.53,60.32C71.90,60.59 77.30,60.50 79.06,60.19ZM26.17,50.09C26.55,49.63 26.38,48.96 25.28,46.73C23.52,43.15 22.28,38.78 22.16,35.75C21.99,31.22 23.69,26.78 26.49,24.43C27.91,23.24 27.92,23.21 28.01,20.69C28.08,18.88 28.14,18.41 28.42,17.51C29.15,15.18 28.57,14.58 25.89,14.88C23.12,15.19 21.90,15.70 18.50,17.95C15.56,19.90 12.82,22.66 11.64,24.86C10.51,26.99 10.42,31.15 11.44,34.56C12.25,37.28 12.38,37.64 12.99,38.94C14.93,43.05 18.04,46.37 22.45,49.04C24.94,50.55 25.62,50.74 26.17,50.09ZM52.75,49.88C54.88,49.41 55.52,49.14 56.91,48.15C57.47,47.74 58.55,47.05 59.30,46.61C61.77,45.16 62.60,43.99 61.67,43.26C61.36,43.02 61.18,43.00 59.01,43.00C55.35,43.00 51.43,42.49 49.56,41.76C47.67,41.03 46.68,40.12 45.81,38.31C45.28,37.22 42.85,34.55 41.32,33.41C40.23,32.58 39.25,33.42 39.25,35.18C39.25,39.45 41.82,44.61 45.57,47.88C48.84,50.72 48.89,50.74 52.75,49.88ZM42.26,49.75C42.78,49.47 42.58,48.90 41.49,47.62C40.76,46.76 37.81,42.26 36.76,40.41C36.32,39.64 35.43,38.34 34.79,37.53C32.91,35.18 31.41,31.67 31.12,28.94C30.92,27.03 30.73,26.62 29.96,26.43C28.67,26.11 26.37,28.65 25.82,31.01C25.46,32.51 25.64,36.80 26.13,38.65C27.00,41.93 31.00,45.83 35.88,48.17C38.77,49.56 41.39,50.21 42.26,49.75ZM64.01,49.31C68.19,48.54 72.38,46.60 75.57,43.95C80.67,39.73 81.65,32.35 77.74,27.64C76.03,25.59 75.21,26.01 75.09,29.00C74.92,33.34 72.27,37.16 63.36,46.00C61.86,47.48 60.61,48.81 60.57,48.96C60.36,49.70 61.36,49.80 64.01,49.31ZM59.86,40.38C60.29,40.32 61.41,40.09 62.33,39.87C64.81,39.29 64.94,39.13 65.08,36.49C65.17,34.86 65.12,34.49 64.72,34.13C64.21,33.65 63.78,33.77 61.77,34.98C60.54,35.73 59.86,35.90 56.87,36.19C54.37,36.44 53.74,36.37 51.25,35.56C49.39,34.95 48.95,34.89 48.60,35.21C47.58,36.13 49.72,38.97 52.15,39.90C53.58,40.45 57.64,40.70 59.86,40.38ZM83.53,39.94C84.31,39.41 86.98,35.69 87.89,33.85C90.06,29.52 90.38,23.87 88.71,19.54C88.47,18.91 88.12,17.85 87.95,17.18C87.38,15.05 86.50,13.90 84.68,12.89C84.13,12.58 82.98,11.93 82.11,11.42C78.83,9.51 77.54,9.18 73.38,9.20C69.17,9.21 67.20,9.47 66.50,10.13C65.51,11.05 66.33,12.22 70.03,15.17C72.38,17.05 73.48,18.45 74.45,20.83C75.09,22.42 75.49,22.87 76.55,23.26C79.04,24.17 80.55,25.49 81.63,27.69C82.41,29.27 82.61,32.02 82.18,35.32C81.77,38.55 81.74,38.89 81.87,39.34C82.13,40.28 82.71,40.49 83.53,39.94ZM36.98,35.70C37.50,35.43 37.73,34.76 37.99,32.75C38.12,31.75 38.34,30.48 38.48,29.93C38.62,29.39 38.83,28.40 38.94,27.75C39.29,25.62 39.73,24.62 41.21,22.47C42.85,20.10 42.67,19.12 40.59,19.12C37.73,19.12 34.65,21.11 33.30,23.82C31.77,26.89 32.55,31.98 34.97,34.75C35.89,35.80 36.36,36.02 36.98,35.70ZM69.25,35.06C69.93,34.71 71.11,32.83 71.85,30.94C72.97,28.05 72.83,24.12 71.50,21.44C69.79,17.98 66.81,16.32 61.75,16.00C57.66,15.74 55.50,16.34 55.50,17.73C55.50,18.66 56.01,19.02 58.63,19.93C59.44,20.21 62.15,21.65 63.84,22.69C66.18,24.14 67.46,27.57 67.55,32.62C67.59,35.07 68.03,35.69 69.25,35.06ZM55.68,33.62C58.01,32.73 58.98,29.76 57.24,28.82C56.61,28.49 56.25,28.62 55.25,29.56C54.03,30.71 53.25,30.81 52.50,29.90C51.74,28.97 51.24,26.90 51.68,26.46C51.98,26.17 57.23,26.15 58.21,26.44C59.50,26.82 60.63,28.29 60.64,29.60C60.65,30.33 60.60,30.52 60.10,31.67C59.29,33.54 59.96,34.25 61.70,33.38C64.09,32.17 64.83,30.40 64.03,27.81C62.95,24.30 60.07,22.97 55.16,23.69C52.91,24.03 52.16,24.45 51.62,25.69C51.43,26.14 51.34,26.21 50.64,26.41C48.22,27.10 47.37,30.75 49.30,32.15C49.86,32.55 51.89,33.56 52.69,33.83C53.39,34.06 54.77,33.97 55.68,33.62ZM45.05,32.31C45.15,32.21 45.26,31.88 45.30,31.59C45.72,27.98 46.15,27.01 48.31,24.81C49.76,23.33 50.56,22.88 52.81,22.24C54.97,21.63 55.33,20.99 54.13,19.87C49.44,15.46 42.65,19.69 42.28,27.26C42.15,30.01 43.99,33.37 45.05,32.31ZM33.87,20.13C35.96,18.34 39.46,16.86 43.22,16.20C44.16,16.03 45.32,15.80 45.78,15.69C46.39,15.55 47.15,15.50 48.47,15.52C50.31,15.54 50.31,15.54 51.94,15.01C55.13,13.96 58.49,13.62 62.02,13.99C64.49,14.25 64.59,13.75 62.57,11.37C60.09,8.47 57.18,6.61 53.92,5.82C53.45,5.71 52.13,5.29 51.00,4.91C47.58,3.73 46.63,3.83 42.13,5.81C39.14,7.13 38.06,7.84 36.03,9.80C32.63,13.08 31.25,15.64 31.25,18.66C31.25,21.12 32.15,21.62 33.87,20.13Z"/><path d="M109.11 95.5Q109.5 95.5 109.5 96.02Q109.5 96.54 109.11 96.54Q105.24 96.54 103.25 97.07Q101.26 97.59 100.63 98.89Q100 100.2 100 102.72V150.96Q100 160.23 92.61 165.61Q85.21 171 71.62 171Q66.47 171 63.23 169.76Q60 168.52 60 166.3Q60 164.83 61.55 163.61Q63.1 162.39 66.51 162.39Q69.65 162.39 71.32 163.41Q73 164.43 74.01 165.79Q75.02 167.16 76.02 168.19Q77.03 169.22 78.89 169.22Q82.55 169.22 84.39 166.09Q86.22 162.96 86.22 155.59V102.55Q86.22 100.03 85.31 98.76Q84.39 97.5 81.69 97.02Q78.99 96.54 73.55 96.54Q73.27 96.54 73.27 96.02Q73.27 95.5 73.55 95.5Q77.89 95.5 82.76 95.63Q87.62 95.76 92.92 95.76Q97.79 95.76 101.85 95.63Q105.91 95.5 109.11 95.5Z"/><path d="M160.25 171.5Q151.79 171.5 144.92 168.45Q138.04 165.4 133.17 160.02Q128.29 154.64 125.64 147.64Q123 140.64 123 132.75Q123 123.06 126.7 115.77Q130.4 108.47 136.51 103.63Q142.62 98.78 149.91 96.39Q157.2 94 164.37 94Q173.06 94 179.94 97.17Q186.81 100.34 191.63 105.72Q196.45 111.1 198.97 117.92Q201.5 124.74 201.5 131.91Q201.5 140.28 198.21 147.46Q194.92 154.64 189.22 160.02Q183.52 165.4 176.06 168.45Q168.6 171.5 160.25 171.5ZM164.23 168.67Q171.26 168.67 176.85 164.83Q182.44 160.99 185.7 153.52Q188.95 146.06 188.95 135.35Q188.95 124.25 185.39 115.62Q181.82 106.99 175.26 102.03Q168.7 97.06 159.6 97.06Q148.1 97.06 141.82 105.42Q135.55 113.77 135.55 128.42Q135.55 137.06 137.66 144.41Q139.77 151.77 143.61 157.24Q147.45 162.72 152.7 165.69Q157.95 168.67 164.23 168.67Z"/><path d="M275.48 105.33Q275.48 101.89 274.84 100.12Q274.2 98.34 272.18 97.63Q270.16 96.92 266.01 96.92Q265.68 96.92 265.68 96.21Q265.68 95.5 266.01 95.5Q268.83 95.5 272.45 95.68Q276.07 95.86 280.85 95.86Q284.75 95.86 288.55 95.68Q292.35 95.5 295.16 95.5Q295.5 95.5 295.5 96.21Q295.5 96.92 295.16 96.92Q291.33 96.92 289.36 97.57Q287.39 98.22 286.73 99.94Q286.07 101.66 286.07 105.09V159.91Q286.07 163.34 286.73 165.12Q287.39 166.9 289.36 167.49Q291.33 168.08 295.16 168.08Q295.5 168.08 295.5 168.79Q295.5 169.5 295.16 169.5Q292.35 169.5 288.55 169.38Q284.75 169.26 280.85 169.26Q276.07 169.26 272.45 169.38Q268.83 169.5 266.01 169.5Q265.68 169.5 265.68 168.79Q265.68 168.08 266.01 168.08Q270.16 168.08 272.18 167.49Q274.2 166.9 274.84 165.12Q275.48 163.34 275.48 159.91ZM231.35 132.51V129.49H280.29V132.51ZM226.4 159.91V105.09Q226.4 101.66 225.74 99.94Q225.08 98.22 223.17 97.57Q221.25 96.92 217.42 96.92Q217.11 96.92 217.11 96.21Q217.11 95.5 217.42 95.5Q220.26 95.5 223.85 95.68Q227.44 95.86 231.33 95.86Q236.13 95.86 239.84 95.68Q243.55 95.5 246.49 95.5Q246.71 95.5 246.71 96.21Q246.71 96.92 246.49 96.92Q242.45 96.92 240.43 97.63Q238.41 98.34 237.71 100.12Q237.02 101.89 237.02 105.33V159.91Q237.02 163.34 237.69 165.12Q238.37 166.9 240.42 167.49Q242.48 168.08 246.49 168.08Q246.71 168.08 246.71 168.79Q246.71 169.5 246.49 169.5Q243.42 169.5 239.78 169.38Q236.13 169.26 231.33 169.26Q227.41 169.26 223.74 169.38Q220.07 169.5 217.22 169.5Q217 169.5 217 168.79Q217 168.08 217.22 168.08Q221.15 168.08 223.09 167.49Q225.02 166.9 225.71 165.12Q226.4 163.34 226.4 159.91Z"/><path d="M329.41 140.33 330.88 137.33H361.73L362.5 140.33ZM387.98 168.07Q388.5 168.07 388.5 168.79Q388.5 169.5 387.98 169.5Q384.74 169.5 381.25 169.26Q377.76 169.02 374.54 169.02Q370.89 169.02 368.21 169.26Q365.53 169.5 362.24 169.5Q361.8 169.5 361.8 168.79Q361.8 168.07 362.24 168.07Q367.21 168.07 368.17 166.16Q369.13 164.24 366.56 158.63L343.5 108.1L347.99 100.12L326.25 153.21Q323.34 160.39 326.05 164.23Q328.76 168.07 335.29 168.07Q335.84 168.07 335.84 168.79Q335.84 169.5 335.29 169.5Q331.99 169.5 329.23 169.26Q326.48 169.02 322.29 169.02Q318.12 169.02 315.59 169.26Q313.06 169.5 309.44 169.5Q309 169.5 309 168.79Q309 168.07 309.44 168.07Q312.41 168.07 314.58 166.75Q316.74 165.43 318.83 161.95Q320.92 158.46 323.52 152.06L347.18 94.4Q347.32 94.05 348.09 94Q348.87 93.96 348.98 94.4L375.97 153.19Q378.58 158.88 380.53 162.16Q382.47 165.43 384.25 166.75Q386.04 168.07 387.98 168.07Z"/></g></symbol>
+  <symbol id="i-rose" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 30c-6.5 0-10-4.4-10-9.5 0-4 2.8-7.5 7-8.4"/><path d="M24 30c6.5 0 10-4.4 10-9.5 0-4-2.8-7.5-7-8.4"/><path d="M21 12.1c.9-2.3 2-3.6 3-4.1 1 .5 2.1 1.8 3 4.1"/><path d="M19.5 21.5c0-4 2.2-6.6 4.5-6.6s4.5 2.6 4.5 6.6"/><path d="M22 19.5c.6-1.4 1.2-2 2-2s1.6.8 2 2.2"/><path d="M24 30v12"/><path d="M24 37c-2.5-3-6-3.4-8-2.4 1.6 2.7 5 3.7 8 2.4z"/><path d="M24 35c2.5-3 6-3.4 8-2.4-1.6 2.7-5 3.7-8 2.4z"/></g></symbol>
+  <symbol id="i-shine" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3 5-9 13L3 8z"/><path d="M3 8h18M9 3l3 5 3-5M12 21 8.5 8M12 21l3.5-13"/></g></symbol>
+  <symbol id="i-drop" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c6 8 12 15 12 22a12 12 0 0 1-24 0c0-7 6-14 12-22z"/><path d="M18.5 29.5a6 6 0 0 0 5.5 5.5"/><path d="M8 40 40 8"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 39 10v12c0 10-6.5 17.5-15 21-8.5-3.5-15-11-15-21V10z"/><path d="m17 24 5 5 9-10"/></g></symbol>
+  <symbol id="i-mirror" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="20" rx="12" ry="14"/><path d="M24 34v9M19 43h10"/><path d="M18 15c1.5-3 3.5-4.5 6-5M17 20.5l4.5-4.5"/><path d="M40 6v5M37.5 8.5h5" stroke-width="1.2"/></g></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5.5 8h13l-1 12.5h-11zM9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4.5 7h15M9.5 7V4.8h5V7M6.5 7l.9 12.2a1.5 1.5 0 0 0 1.5 1.3h6.2a1.5 1.5 0 0 0 1.5-1.3L17.5 7M10.3 11v6M13.7 11v6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2l-.4-.3z"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#inicio" aria-label="JOHA, inicio"><svg viewBox="0 0 341 180" width="84" height="44" aria-hidden="true"><use href="#logo-mark" width="341" height="180"/></svg></a>
+    <nav aria-label="Principal"><ul>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li data-sec="calidad"><a href="#calidad">Calidad</a></li>
+      <li data-sec="cuidado"><a href="#cuidado">Cuidado</a></li>
+      <li data-sec="esencia"><a href="#esencia">Nuestra esencia</a></li>
+      <li data-sec="pedir"><a href="#pedido">Cómo pedir</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="cart-btn cart-ui" id="cart-open" type="button" aria-label="Mi cotización: vacía">
+        <svg aria-hidden="true"><use href="#i-bag"/></svg>
+        <span class="cart-count" id="cart-count" aria-hidden="true" hidden>0</span>
+      </button>
+      <button class="theme" id="tema" type="button" aria-label="Cambiar a modo oscuro">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
+      </button>
+      <a class="btn btn-fill wa" data-msg="Hola JOHA, me interesa saber más sobre tus accesorios 🌷" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span>Escríbenos</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="copy">
+        <h1><svg class="logo-full" viewBox="0 0 449 282" role="img" aria-label="JOHA, brilla con tu esencia"><use href="#logo-full" width="449" height="282"/></svg></h1>
+        <p class="lede" data-t="portada.texto">Accesorios y joyería femenina para los pequeños detalles que cuentan tu historia.</p>
+        <p class="rodio"><svg aria-hidden="true"><use href="#i-shine"/></svg><span data-t="portada.rodio">Con baño de rodio: no se oxida ni se mancha.</span></p>
+        <div class="actions">
+          <a class="btn btn-fill" href="#catalogo">Ver el catálogo</a>
+          <a class="btn btn-line wa" data-msg="Hola JOHA, me interesa saber más sobre tus accesorios 🌷" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Pedir por WhatsApp</a>
+        </div>
+      </div>
+      <div class="showcase" aria-label="Piezas destacadas" role="region">
+        <div class="stack" id="ruleta">
+          <svg class="sparkle s1" aria-hidden="true"><use href="#i-spark"/></svg>
+          <svg class="sparkle s2" aria-hidden="true"><use href="#i-spark"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="catalog" id="catalogo">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Catálogo</h2>
+          <p>Toca cualquier pieza para verla de cerca y consultarla por WhatsApp.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filtrar catálogo">
+          <button type="button" data-f="todo" aria-pressed="true">Todo</button>
+        </div>
+      </div>
+      <ul class="grid" id="grid"></ul>
+    </div>
+  </section>
+
+  <section class="calidad" id="calidad" data-sec="calidad">
+    <div class="wrap">
+      <div class="tarjeta">
+        <div class="ph"><img class="fill" id="cal-fill" src="images/productos/aretes-flor-dorada.webp" alt="" aria-hidden="true" loading="lazy"><img class="main" id="cal-img" src="images/productos/aretes-flor-dorada.webp" alt="Pieza JOHA con acabado en espejo" loading="lazy"></div>
+      </div>
+      <div>
+        <h2 data-t="calidad.titulo">Calidad que perdura</h2>
+        <p class="intro" data-t="calidad.texto" data-md>Todas nuestras piezas tienen <strong>baño de rodio</strong>, un material que las protege y conserva su brillo para que te acompañen por mucho tiempo.</p>
+        <ul class="bene" id="t-bene">
+          <li><svg aria-hidden="true"><use href="#i-drop"/></svg><div><h3>No se oxida</h3><p>Lúcelas a diario sin preocuparte por el paso del tiempo.</p></div></li>
+          <li><svg aria-hidden="true"><use href="#i-shield"/></svg><div><h3>No se mancha</h3><p>Su color se mantiene igual que el primer día.</p></div></li>
+          <li><svg aria-hidden="true"><use href="#i-mirror"/></svg><div><h3>Acabado en espejo</h3><p>Un baño pulido que refleja la luz y hace brillar cada detalle.</p></div></li>
+        </ul>
+        <p class="cierre" data-t="calidad.cierre">Hechas para durar, como lo que sientes</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cuidado" id="cuidado" data-sec="cuidado">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-t="cuidado.titulo">Cuida tus piezas</h2>
+        <p data-t="cuidado.texto">Con estos cuidados sencillos, el baño de rodio conserva su acabado en espejo por mucho más tiempo.</p>
+      </div>
+      <ul class="tips" id="t-tips">
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg><div><h3>Póntelas de último</h3><p>Primero el perfume, las cremas y el maquillaje; después tus accesorios.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg><div><h3>Quítatelas antes del agua</h3><p>Para bañarte, nadar en piscina o mar, o hacer ejercicio.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg><div><h3>Límpialas con suavidad</h3><p>Usa un paño suave y seco. Evita químicos, alcohol y productos abrasivos.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg><div><h3>Guárdalas por separado</h3><p>En su bolsita o estuche, para que no se rayen ni se enreden.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg><div><h3>Lejos de la humedad</h3><p>Evita dejarlas en el baño; un lugar seco las mantiene como nuevas.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg><div><h3>Trátalas con cariño</h3><p>Evita golpes y tirones; son detalles delicados hechos para acompañarte.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="esencia" data-sec="esencia">
+    <div class="wrap">
+      <svg class="rose" aria-hidden="true"><use href="#i-rose"/></svg>
+      <p class="script" data-t="esencia.frase">Pequeños detalles, grandes emociones</p>
+      <p data-t="esencia.texto">Un accesorio no es solo un complemento. Es un detalle que habla de quién eres, de lo que sientes y de los momentos que quieres recordar.</p>
+    </div>
+  </section>
+
+  <section class="order" id="pedido" data-sec="pedir">
+    <div class="wrap">
+      <div class="intro">
+        <h2 data-t="pedir.titulo">Cómo pedir</h2>
+        <p data-t="pedir.texto">Te atendemos por WhatsApp, con calma y de forma personal.</p>
+        <a class="btn btn-fill wa" data-msg="Hola JOHA, me interesa saber más sobre tus accesorios 🌷" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Escribir por WhatsApp</a>
+      </div>
+      <ol class="steps" id="t-pasos">
+        <li><div><h3>Elige tu pieza</h3><p>Recorre el catálogo y guarda las que más te gusten.</p></div></li>
+        <li><div><h3>Escríbenos</h3><p>Desde cada pieza puedes enviarnos un mensaje con su nombre.</p></div></li>
+        <li><div><h3>Confirmamos contigo</h3><p>Te contamos precio, disponibilidad y forma de entrega.</p></div></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg class="logo-full" viewBox="0 0 449 282" role="img" aria-label="JOHA, brilla con tu esencia"><use href="#logo-full" width="449" height="282"/></svg>
+    <div class="links">
+      <a class="wa" data-msg="Hola JOHA, me interesa saber más sobre tus accesorios 🌷" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="ig" href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <small>© <span id="yr"></span> JOHA · Accesorios y joyería femenina</small>
+  </div>
+</footer>
+
+<dialog id="lb" aria-labelledby="lb-t">
+  <div class="lb">
+    <div class="media"><div class="ph"><img class="fill" id="lb-fill" src="" alt=""><img class="main" id="lb-img" src="" alt=""></div><div class="thumbs" id="lb-thumbs" role="group" aria-label="Fotos de la pieza" hidden></div></div>
+    <div class="info">
+      <button class="close" type="button" aria-label="Cerrar" id="lb-x">×</button>
+      <span class="badge">Agotado</span>
+      <h3 id="lb-t"></h3>
+      <p class="cat" id="lb-c"></p>
+      <p class="material"><svg aria-hidden="true"><use href="#i-shine"/></svg>Baño de rodio con acabado en espejo</p>
+      <p class="note" id="lb-n">Escríbenos y te confirmamos precio y disponibilidad de esta pieza.</p>
+      <div class="acciones">
+        <div class="cot cart-ui" id="lb-cot"></div>
+        <a class="btn btn-fill" id="lb-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="promo" aria-labelledby="promo-t">
+  <div class="promo" tabindex="-1" autofocus>
+    <svg class="sparkle p1" aria-hidden="true"><use href="#i-spark"/></svg>
+    <svg class="sparkle p2" aria-hidden="true"><use href="#i-spark"/></svg>
+    <button class="close" type="button" aria-label="Cerrar" id="promo-x">×</button>
+    <img class="promo-img" id="promo-img" src="" alt="" hidden>
+    <svg class="logo-mark" id="promo-logo" viewBox="0 0 341 180" aria-hidden="true"><use href="#logo-mark" width="341" height="180"/></svg>
+    <h2 id="promo-t">Precios de lanzamiento</h2>
+    <p class="script" id="promo-frase">Brilla con tu esencia</p>
+    <p class="txt" id="promo-txt">Estamos estrenando JOHA y lo celebramos contigo con precios especiales de lanzamiento. Escríbenos y conoce el valor de tu pieza favorita.</p>
+    <div class="actions">
+      <a class="btn btn-fill" href="#catalogo" id="promo-cat">Ver el catálogo</a>
+      <a class="btn btn-line wa" id="promo-wa" data-msg="Hola JOHA, me interesa saber más sobre tus accesorios 🌷 Vi que están con precios de lanzamiento." href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span id="promo-wa-txt">Pedir por WhatsApp</span></a>
+    </div>
+  </div>
+</dialog>
+
+<button class="cart-fab cart-ui" id="cart-fab" type="button" aria-label="Mi cotización: vacía">
+  <svg aria-hidden="true"><use href="#i-bag"/></svg><span class="cart-count" id="fab-count" aria-hidden="true" hidden>0</span>
+</button>
+<div class="aviso" id="aviso" role="status" aria-live="polite" hidden><span></span><button type="button"></button></div>
+
+<dialog id="cart" aria-labelledby="cart-t" class="cart-ui">
+  <div class="drawer">
+    <header>
+      <h2 id="cart-t">Mi cotización</h2>
+      <button class="close" type="button" aria-label="Cerrar" id="cart-x">×</button>
+    </header>
+    <div class="cuerpo">
+      <ul id="cart-lista" style="list-style:none;margin:0;padding:0"></ul>
+      <section class="sug" id="cart-sug" hidden aria-labelledby="sug-t">
+        <h3 id="sug-t">Combina con tu cotización</h3>
+        <ul id="sug-lista"></ul>
+      </section>
+      <div class="vacia" id="cart-vacia"><span class="script">Aún no hay piezas</span>Toca «Añadir a mi cotización» en las piezas que te gusten y aparecerán aquí.</div>
+      <div id="cart-nota-box">
+        <label for="cart-nota">¿Algo que debamos saber? (opcional)</label>
+        <textarea id="cart-nota" maxlength="300" placeholder="Ej.: es para regalo, ciudad de entrega…"></textarea>
+      </div>
+    </div>
+    <footer id="cart-pie">
+      <p class="resumen" id="cart-resumen" aria-live="polite"></p>
+      <a class="btn btn-fill" id="cart-enviar" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Enviar mi cotización por WhatsApp</a>
+      <button class="vaciar" type="button" id="cart-vaciar">Vaciar cotización</button>
+    </footer>
+  </div>
+</dialog>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>

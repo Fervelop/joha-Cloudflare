@@ -1,0 +1,369 @@
+# Panel de administración de JOHA (Decap CMS 3.17.3)
+# Inicio de sesión con GitHub mediante las funciones /api/auth y /api/callback
+# de este mismo sitio (Cloudflare Pages Functions).
+# Solo pueden entrar cuentas de GitHub con permiso de escritura en el repositorio.
+# base_url, site_url y display_url se completan solos con la dirección del sitio
+# (ver admin/index.html), así funciona igual con *.pages.dev o con un dominio propio.
+backend:
+  name: github
+  repo: Fervelop/joha-Cloudflare
+  branch: main
+  auth_endpoint: api/auth
+  commit_messages:
+    create: "Crear {{collection}} «{{slug}}»"
+    update: "Actualizar {{collection}} «{{slug}}»"
+    delete: "Eliminar {{collection}} «{{slug}}»"
+    uploadMedia: "Subir foto «{{path}}»"
+    deleteMedia: "Eliminar foto «{{path}}»"
+    openAuthoring: "{{message}}"
+
+locale: es
+logo:
+  src: /admin/logo-joha.svg
+  show_in_header: true
+
+media_folder: public/images/productos
+public_folder: /images/productos
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # ================================================================ TIPOS
+  - name: tipos
+    label: "🏷️ Tipos de producto"
+    label_singular: tipo
+    description: >-
+      Los grupos del catálogo (Aretes, Sets, Anillos…). Cada tipo crea un botón de filtro en la página
+      cuando tiene al menos una pieza. Si borras un tipo que tiene piezas, esas piezas pasan a «Otros».
+    folder: content/tipos
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{nombre}}"
+    identifier_field: nombre
+    summary: "{{nombre}}"
+    sortable_fields:
+      - field: orden
+        label: Orden
+        default_sort: asc
+    editor:
+      preview: false
+    fields:
+      - name: nombre
+        label: Nombre del filtro
+        widget: string
+        hint: "El texto del botón de filtro. Ejemplos: Anillos, Pulseras, Tobilleras."
+        pattern: ['^.{2,40}$', 'Entre 2 y 40 caracteres']
+      - name: etiqueta
+        label: Texto debajo de cada pieza
+        widget: string
+        required: false
+        hint: "Opcional. Si lo dejas vacío se usa el nombre. Ejemplo: «Set de collar y aretes»."
+      - name: orden
+        label: Posición del filtro
+        widget: number
+        value_type: int
+        default: 100
+        min: 1
+        hint: "Menor número = aparece primero."
+
+  # ================================================================ PRODUCTOS
+  - name: productos
+    label: "🛍️ Productos"
+    label_singular: producto
+    description: >-
+      Cada pieza es una ficha. Usa «Filter by» para ver agotadas o las de la portada, y la vista de cuadrícula para ver las fotos.
+      Para que un cambio salga en la página: Publicar → Publicar ahora. Se ve en uno o dos minutos.
+    folder: content/productos
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{nombre}}"
+    identifier_field: nombre
+    summary: "{{nombre}}"
+    sortable_fields:
+      - field: orden
+        label: Orden en la página
+        default_sort: asc
+      - field: nombre
+        label: Nombre
+    view_filters:
+      - { label: "Disponibles", field: agotado, pattern: false }
+      - { label: "Agotados", field: agotado, pattern: true }
+      - { label: "En la portada", field: destacado, pattern: true }
+    view_groups:
+      - { label: "Tipo", field: tipo }
+      - { label: "Disponibilidad", field: agotado }
+    fields:
+      - name: nombre
+        label: Nombre de la pieza
+        widget: string
+        hint: "Así aparece en el catálogo y en el mensaje de WhatsApp."
+        pattern: ['^.{2,60}$', 'Entre 2 y 60 caracteres']
+      - name: tipo
+        label: Tipo
+        widget: relation
+        collection: tipos
+        value_field: "{{slug}}"
+        search_fields: ["nombre"]
+        display_fields: ["nombre"]
+        options_length: 100
+        hint: "Define en qué filtro del catálogo aparece. ¿Falta un tipo? Créalo en «Tipos de producto»."
+      - name: image
+        label: Foto principal
+        widget: image
+        choose_url: false
+        hint: "Toca «Elige una imagen» → «Subir nuevo» → elige la foto → «Confirmar selección». JPG, PNG o WebP. Las fotos grandes se ajustan solas. Las fotos HEIC del iPhone no funcionan: expórtalas como JPG."
+        media_library:
+          config:
+            max_file_size: 10485760
+      - name: galeria
+        label: Más fotos
+        label_singular: foto
+        widget: list
+        required: false
+        max: 5
+        collapsed: false
+        summary: "{{fields.foto}}"
+        hint: "Opcional. Pulsa «Add foto» y luego «Elige una imagen». Hasta 5 fotos adicionales que se ven al abrir la pieza."
+        fields:
+          - name: foto
+            label: Foto
+            widget: image
+            choose_url: false
+            media_library:
+              config:
+                max_file_size: 10485760
+      - name: agotado
+        label: "¿Está agotada?"
+        widget: boolean
+        default: false
+        hint: "Actívalo cuando no haya unidades. La pieza sigue en el catálogo con la etiqueta «Agotado»."
+      - name: destacado
+        label: "¿Mostrar en la portada?"
+        widget: boolean
+        default: false
+        hint: "Sale en las tarjetas que giran arriba. Las agotadas nunca salen ahí. Solo aplica si en «Portada» eliges usar las piezas marcadas."
+      - name: orden
+        label: Posición en el catálogo
+        widget: number
+        value_type: int
+        default: 100
+        min: 1
+        hint: "Menor número = aparece primero. Usa 10, 20, 30… y 15 para poner una pieza entre la 10 y la 20."
+
+  # ================================================================ PÁGINA
+  - name: pagina
+    label: "🌸 Página"
+    description: >-
+      Portada, ventana de bienvenida, textos de las secciones y ajustes generales.
+      Para que un cambio salga en la página: Publicar → Publicar ahora. Se ve en uno o dos minutos.
+    files:
+      # ---------------------------------------------------------- portada
+      - name: portada
+        label: "Portada"
+        file: public/data/portada.json
+        description: "Lo primero que se ve al entrar: la frase y las tarjetas que giran."
+        fields:
+          - { name: texto, label: "Frase debajo del logo", widget: text }
+          - { name: rodio, label: "Línea del rodio (con el ícono de diamante)", widget: string }
+          - name: ruleta
+            label: "Tarjetas que giran"
+            widget: object
+            collapsed: false
+            fields:
+              - name: origen
+                label: "¿Qué fotos mostrar?"
+                widget: select
+                default: productos
+                options:
+                  - { label: "Las piezas marcadas «Mostrar en la portada» (recomendado)", value: "productos" }
+                  - { label: "Las fotos que elijo aquí abajo", value: "fotos" }
+                hint: "Con la primera opción, la portada se actualiza sola cuando marcas o agotas piezas."
+              - name: fotos
+                label: "Fotos propias (solo si elegiste «Las fotos que elijo aquí abajo»)"
+                label_singular: foto
+                widget: list
+                required: false
+                max: 8
+                summary: "{{fields.descripcion}}"
+                fields:
+                  - { name: foto, label: Foto, widget: image, choose_url: false }
+                  - { name: descripcion, label: "Descripción breve (para lectores de pantalla)", widget: string, required: false }
+              - name: segundos
+                label: "Segundos entre cada giro"
+                widget: number
+                value_type: float
+                default: 4
+                min: 2
+                max: 10
+                step: 0.5
+
+      # ---------------------------------------------------------- ventana
+      - name: promo
+        label: "Ventana de bienvenida"
+        file: public/data/promo.json
+        description: "El mensaje que aparece al entrar a la página (por ejemplo, precios de lanzamiento)."
+        fields:
+          - name: activa
+            label: "¿Mostrar la ventana?"
+            widget: boolean
+            default: true
+          - { name: titulo, label: "Título", widget: string }
+          - { name: frase, label: "Frase manuscrita", widget: string, required: false, hint: "Déjala vacía para no mostrarla." }
+          - { name: texto, label: "Texto", widget: text }
+          - name: imagen
+            label: "Imagen"
+            widget: image
+            choose_url: false
+            required: false
+            hint: "Si pones una imagen, reemplaza al logo en la parte de arriba de la ventana."
+          - { name: boton_catalogo, label: "Texto del botón principal", widget: string, default: "Ver el catálogo" }
+          - name: mostrar_whatsapp
+            label: "¿Mostrar botón de WhatsApp?"
+            widget: boolean
+            default: true
+          - { name: boton_whatsapp, label: "Texto del botón de WhatsApp", widget: string, default: "Pedir por WhatsApp" }
+          - { name: mensaje_whatsapp, label: "Mensaje que se envía por WhatsApp", widget: text }
+          - name: frecuencia
+            label: "¿Cada cuánto aparece?"
+            widget: select
+            default: visita
+            options:
+              - { label: "Cada vez que abren la página", value: "visita" }
+              - { label: "Una vez por visita (no se repite al navegar)", value: "sesion" }
+              - { label: "Solo la primera vez (hasta que cambies el título o el texto)", value: "una_vez" }
+          - name: segundos_espera
+            label: "Segundos antes de aparecer"
+            widget: number
+            value_type: float
+            default: 1
+            min: 0
+            max: 30
+            step: 0.5
+          - name: hasta
+            label: "Mostrar hasta"
+            widget: datetime
+            required: false
+            date_format: "DD/MM/YYYY"
+            time_format: false
+            format: "YYYY-MM-DD"
+            picker_utc: true
+            hint: "Después de esta fecha la ventana deja de aparecer sola. Déjalo vacío para no tener fecha de fin."
+
+      # ---------------------------------------------------------- textos
+      - name: textos
+        label: "Textos de las secciones"
+        file: public/data/textos.json
+        description: "Para poner una palabra en negrita, escríbela entre **asteriscos**."
+        editor:
+          preview: false
+        fields:
+          - name: calidad
+            label: "Calidad que perdura"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - { name: foto, label: "Foto de la sección", widget: image, choose_url: false }
+              - name: beneficios
+                label: Beneficios
+                label_singular: beneficio
+                widget: list
+                min: 3
+                max: 3
+                hint: "Siempre son 3, cada uno con su ícono: gota, escudo y espejo."
+                summary: "{{fields.titulo}}"
+                fields:
+                  - { name: titulo, label: Título, widget: string }
+                  - { name: texto, label: Texto, widget: string }
+              - { name: cierre, label: "Frase final (manuscrita)", widget: string }
+          - name: cuidado
+            label: "Cuida tus piezas"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - name: consejos
+                label: Consejos
+                label_singular: consejo
+                widget: list
+                min: 1
+                max: 10
+                summary: "{{fields.titulo}}"
+                fields:
+                  - { name: titulo, label: Título, widget: string }
+                  - { name: texto, label: Texto, widget: string }
+          - name: esencia
+            label: "Nuestra esencia"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: frase, label: "Frase (manuscrita)", widget: string }
+              - { name: texto, label: Texto, widget: text }
+          - name: pedir
+            label: "Cómo pedir"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: string }
+              - name: pasos
+                label: Pasos
+                label_singular: paso
+                widget: list
+                min: 1
+                max: 5
+                summary: "{{fields.titulo}}"
+                fields:
+                  - { name: titulo, label: Título, widget: string }
+                  - { name: texto, label: Texto, widget: string }
+
+      # ---------------------------------------------------------- ajustes
+      - name: ajustes
+        label: "Ajustes generales"
+        file: public/data/ajustes.json
+        editor:
+          preview: false
+        fields:
+          - name: whatsapp
+            label: Número de WhatsApp
+            widget: string
+            hint: "Con indicativo 57, sin + ni espacios. Ejemplo: 573183623168"
+            pattern: ['^57\d{10}$', 'Debe ser 57 seguido de los 10 dígitos del celular']
+          - name: instagram
+            label: Usuario de Instagram
+            widget: string
+            required: false
+            hint: "Sin @. Si lo dejas vacío, el enlace no aparece."
+            pattern: ['^[A-Za-z0-9._]{0,30}$', 'Solo letras, números, puntos y guion bajo']
+          - name: tema_inicial
+            label: "Modo con el que abre la página"
+            widget: select
+            default: oscuro
+            options:
+              - { label: "Oscuro", value: "oscuro" }
+              - { label: "Claro", value: "claro" }
+            hint: "Cada visitante puede cambiarlo con el botón de luna/sol; su elección se recuerda."
+          - name: carrito_activo
+            label: "¿Activar «Mi cotización»?"
+            widget: boolean
+            default: true
+            hint: "El botón «Añadir a mi cotización» en cada pieza y la bolsa de arriba. La clienta arma su lista (máximo 5 por pieza) y la envía completa por WhatsApp."
+          - name: secciones
+            label: "Secciones visibles"
+            widget: object
+            collapsed: false
+            hint: "Apaga una sección para ocultarla de la página y del menú sin borrar su contenido."
+            fields:
+              - { name: calidad, label: "Calidad que perdura", widget: boolean, default: true }
+              - { name: cuidado, label: "Cuida tus piezas", widget: boolean, default: true }
+              - { name: esencia, label: "Nuestra esencia", widget: boolean, default: true }
+              - { name: pedir, label: "Cómo pedir", widget: boolean, default: true }
