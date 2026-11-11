@@ -314,6 +314,65 @@ a{color:inherit}
 @media (hover:hover) and (pointer:fine){.aviso button:hover{background:rgba(255,249,247,.26)}}
 @media (max-width:620px){.aviso{border-radius:18px;flex-wrap:wrap;bottom:16px}}
 @media (prefers-reduced-motion:reduce){.aviso{transition:opacity .2s ease;transform:translate(-50%,0)}}
+
+/* ---------- Catálogo: líneas, filtros y páginas ---------- */
+.lineas{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:5px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 70%,transparent);isolation:isolate}
+.lineas[hidden]{display:none}
+.lineas button{all:unset;cursor:pointer;position:relative;z-index:1;min-width:112px;padding:12px 24px;text-align:center;border-radius:999px;font-weight:500;font-size:1rem;color:var(--ink-soft);transition:color .25s ease}
+.lineas button[aria-selected="true"]{color:#FFF9F7}
+.lineas button:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
+.lineas-ind{position:absolute;z-index:0;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:var(--vino);
+  transition:transform .32s var(--ease-out),background-color .32s ease}
+.lineas[data-activa="hombre"] .lineas-ind{transform:translateX(100%);background:#3a2a1c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lineas-ind{background:var(--rosa)}:root:not([data-theme="light"]) .lineas button[aria-selected="true"]{color:#5B2937}:root:not([data-theme="light"]) .lineas[data-activa="hombre"] .lineas-ind{background:var(--dorado)}}
+:root[data-theme="dark"] .lineas-ind{background:var(--rosa)}
+:root[data-theme="dark"] .lineas button[aria-selected="true"]{color:#2a141b}
+:root[data-theme="dark"] .lineas[data-activa="hombre"] .lineas-ind{background:var(--dorado)}
+
+.cat-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:-8px 0 34px}
+.cat-cuenta{font-size:.92rem;color:var(--ink-soft)}
+.filters[hidden]{display:none}
+
+.grid.ent-der{animation:ent-der .38s var(--ease-out)}
+.grid.ent-izq{animation:ent-izq .38s var(--ease-out)}
+@keyframes ent-der{from{opacity:0;transform:translateX(28px)}}
+@keyframes ent-izq{from{opacity:0;transform:translateX(-28px)}}
+
+.paginas{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:52px;flex-wrap:wrap}
+.paginas[hidden]{display:none}
+.paginas button{all:unset;cursor:pointer;min-width:44px;height:44px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--line);font-weight:500;color:var(--ink);transition:border-color .2s ease,background-color .2s ease}
+.paginas .pg-flecha{font-size:1.4rem;line-height:1}
+.paginas button[aria-current="page"]{background:var(--vino);border-color:var(--vino);color:#FFF9F7}
+.paginas button[disabled]{opacity:.35;cursor:not-allowed}
+.paginas button:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){.paginas button:not([disabled]):not([aria-current]):hover{border-color:var(--dorado)}}
+.pg-sep{color:var(--ink-soft);padding:0 4px}
+:root[data-theme="dark"] .paginas button[aria-current="page"]{background:var(--rosa);border-color:var(--rosa);color:#2a141b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .paginas button[aria-current="page"]{background:var(--rosa);border-color:var(--rosa);color:#2a141b}}
+
+/* línea Hombre: acento sobrio (dorado y tonos neutros, sin rosas) */
+.catalog[data-para="hombre"] .tarjeta{background:#ece6df}
+.catalog[data-para="hombre"] .filters button[aria-pressed="true"]{background:var(--dorado);border-color:var(--dorado);color:#fff}
+.catalog[data-para="hombre"] .paginas button[aria-current="page"]{background:var(--dorado)!important;border-color:var(--dorado)!important;color:#fff!important}
+.catalog[data-para="hombre"] .cot-step{background:#3a2a1c;color:#f3e9dc}
+.catalog[data-para="hombre"] .badge{background:#3a2a1c}
+.catalog[data-para="hombre"] .ph .fill{filter:blur(18px) saturate(.35)}
+:root[data-theme="dark"] .catalog[data-para="hombre"] .tarjeta{background:#2e2620}
+:root[data-theme="dark"] .catalog[data-para="hombre"] .cot-step{background:var(--dorado);color:#1e140d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .catalog[data-para="hombre"] .tarjeta{background:#2e2620}:root:not([data-theme="light"]) .catalog[data-para="hombre"] .cot-step{background:var(--dorado);color:#1e140d}}
+
+@media (prefers-reduced-motion:reduce){
+  .lineas-ind{transition:none}
+  .grid.ent-der,.grid.ent-izq{animation:fade-in .2s ease}
+}
+@keyframes fade-in{from{opacity:0}}
+@media (max-width:620px){
+  .lineas{display:grid;width:100%}
+  .lineas button{min-width:0;padding:12px 10px}
+  .cat-bar{margin:-4px 0 26px}
+  .paginas{margin-top:40px;gap:4px}
+  .paginas button{min-width:40px;height:40px}
+}
 /* ---------- Band ---------- */
 .band{background:var(--band-bg);color:var(--band-ink);padding:110px 0;text-align:center;position:relative;overflow:hidden}
 .band .script{font-family:var(--script);font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.1;margin:0;color:var(--rosa)}
@@ -481,11 +540,16 @@ dialog::backdrop{background:rgba(42,20,27,.72);backdrop-filter:blur(4px)}
           <h2>Catálogo</h2>
           <p>Toca cualquier pieza para verla de cerca y consultarla por WhatsApp.</p>
         </div>
-        <div class="filters" role="group" aria-label="Filtrar catálogo">
+        <div class="lineas" id="lineas" role="tablist" aria-label="Elegir catálogo" hidden></div>
+      </div>
+      <div class="cat-bar">
+        <div class="filters" role="group" aria-label="Filtrar por tipo">
           <button type="button" data-f="todo" aria-pressed="true">Todo</button>
         </div>
+        <span class="cat-cuenta" id="cat-cuenta" aria-live="polite"></span>
       </div>
       <ul class="grid" id="grid"></ul>
+      <nav class="paginas" id="paginas" aria-label="Páginas del catálogo" hidden></nav>
     </div>
   </section>
 

@@ -5,7 +5,7 @@ Alojado en **Cloudflare Pages** (publicaciones gratuitas, 500 al mes).
 
 | | |
 | --- | --- |
-| Sitio | https://joha-cloudflare.pages.dev (o el dominio propio cuando se conecte) |
+| Sitio | https://joha-jw.pages.dev (o el dominio propio cuando se conecte) |
 | Panel de administración | `/admin` en la misma dirección |
 | Repositorio | https://github.com/Fervelop/joha-Cloudflare |
 | Pedidos | WhatsApp, a través de «Mi cotización» y los botones de cada pieza |
@@ -16,7 +16,7 @@ Alojado en **Cloudflare Pages** (publicaciones gratuitas, 500 al mes).
 
 1. **Subir este repositorio** a `Fervelop/joha-Cloudflare` (rama `main`).
 2. **Cloudflare → Workers & Pages → Create → Pages → Connect to Git** → elegir `Fervelop/joha-Cloudflare`.
-   - Project name: `joha-cloudflare` (de ahí sale la dirección `joha-cloudflare.pages.dev`)
+   - Project name: `joha-jw` (de ahí sale la dirección `joha-jw.pages.dev`)
    - Production branch: `main`
    - Framework preset: `None`
    - Build command: `npm run build`
@@ -24,16 +24,16 @@ Alojado en **Cloudflare Pages** (publicaciones gratuitas, 500 al mes).
    - Root directory: *(vacío)*
 3. **GitHub → Settings → Developer settings → OAuth Apps → New OAuth App**
    - Application name: `Panel JOHA (Cloudflare)`
-   - Homepage URL: `https://joha-cloudflare.pages.dev`
-   - Authorization callback URL: `https://joha-cloudflare.pages.dev/api/callback`
+   - Homepage URL: `https://joha-jw.pages.dev`
+   - Authorization callback URL: `https://joha-jw.pages.dev/api/callback`
    - Copiar el **Client ID** y generar un **Client secret**.
 4. **Cloudflare → el proyecto → Settings → Variables and Secrets** (entorno *Production*):
    - `GITHUB_CLIENT_ID` = el Client ID (tipo *Text*)
    - `GITHUB_CLIENT_SECRET` = el Client secret (tipo **Secret**)
-   - `SITE_URL` = `https://joha-cloudflare.pages.dev` (tipo *Text*)
+   - `SITE_URL` = `https://joha-jw.pages.dev` (tipo *Text*)
    - `NODE_VERSION` = `20` (tipo *Text*)
 5. **Deployments → Retry deployment** (para que tome las variables).
-6. Entrar a `https://joha-cloudflare.pages.dev/admin` → **Iniciar sesión con GitHub**.
+6. Entrar a `https://joha-jw.pages.dev/admin` → **Iniciar sesión con GitHub**.
 
 Si el nombre `joha-cloudflare` ya está ocupado, Cloudflare asigna otro: usar esa dirección
 en los pasos 3 y 4.
@@ -49,7 +49,7 @@ en los pasos 3 y 4.
 
 ### Página
 - **Portada** con el logo, frase, línea del rodio y tarjetas que giran como ruleta.
-- **Catálogo** con filtros (Aretes, Sets, Collares y pulseras), etiqueta «Agotado» y vista ampliada de cada pieza con galería de varias fotos.
+- **Catálogo** con selector deslizante **Mujer | Hombre** (las piezas Unisex salen en ambos; la línea Hombre usa un acento sobrio dorado), filtros por tipo según la línea, **12 piezas por página** con flechas y números, etiqueta «Agotado» y vista ampliada con galería. En celular se cambia de línea deslizando el dedo; `?para=hombre` abre directo el catálogo de hombre.
 - **Calidad que perdura**: baño de rodio, no se oxida, no se mancha, acabado en espejo.
 - **Cuida tus piezas**: guía de seis consejos.
 - **Nuestra esencia** y **Cómo pedir** (tres pasos).
@@ -89,8 +89,9 @@ en los pasos 3 y 4.
 
 1. Entrar a **/admin** → «Iniciar sesión con GitHub».
 2. **Productos** → abrir una ficha o «+ producto».
-3. Para la foto: **Elige una imagen → Subir nuevo → elegir la foto → Confirmar selección**.
-4. **Publicar → Publicar ahora**. Cloudflare publica en uno o dos minutos (la foto nueva se ve en el panel cuando termina).
+3. Elegir **¿Para quién es?** (Mujer, Hombre o Unisex) y el tipo.
+4. Para la foto: **Elige una imagen → Subir nuevo → elegir la foto → Confirmar selección**.
+5. **Publicar → Publicar ahora**. Cloudflare publica en uno o dos minutos (la foto nueva se ve en el panel cuando termina).
 
 ¿Falta un tipo (por ejemplo Anillos)? Crearlo primero en **Tipos de producto** y luego elegirlo en la pieza.
 

@@ -51,6 +51,7 @@ for (const { slug, datos: p } of leerCarpeta("content/productos")) {
     .filter(okImg);
   productos.push({
     nombre, tipo,
+    para: ["mujer", "hombre", "unisex"].includes(p.para) ? p.para : "mujer",
     foto: p.image,
     fotos: [p.image, ...extra].slice(0, 6),
     agotado: p.agotado === true,

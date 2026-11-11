@@ -10,7 +10,7 @@ const { execFileSync } = require("child_process");
 
 const RAIZ = path.join(__dirname, "..");
 const DIST = path.join(RAIZ, "dist");
-const SITE_URL = String(process.env.SITE_URL || "https://joha-cloudflare.pages.dev").replace(/\/+$/, "");
+const SITE_URL = String(process.env.SITE_URL || "https://joha-jw.pages.dev").replace(/\/+$/, "");
 if (!/^https:\/\/[a-z0-9.-]+$/i.test(SITE_URL)) throw new Error(`SITE_URL no válida: ${SITE_URL}`);
 
 fs.rmSync(DIST, { recursive: true, force: true });

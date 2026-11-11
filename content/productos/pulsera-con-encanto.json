@@ -1,9 +1,10 @@
 {
   "nombre": "Pulsera con encanto",
-  "tipo": "collares",
+  "tipo": "pulseras",
   "image": "/images/productos/pulsera-con-encanto.webp",
   "galeria": [],
   "agotado": true,
   "destacado": false,
-  "orden": 60
+  "orden": 60,
+  "para": "mujer"
 }

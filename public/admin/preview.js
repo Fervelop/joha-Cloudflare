@@ -41,6 +41,7 @@
           h("li", { className: agotado ? "no" : "si" }, agotado ? "Agotado: se muestra con etiqueta y no sale en la portada" : "Disponible"),
           h("li", { className: destacado && !agotado ? "si" : "off" },
             destacado ? (agotado ? "Marcado para la portada, pero no saldrá porque está agotado" : "Sale en la ruleta de la portada") : "No sale en la portada"),
+          h("li", { className: "off" }, "Catálogo: " + ({ mujer: "Mujer", hombre: "Hombre", unisex: "Mujer y Hombre (unisex)" }[d("para") || "mujer"] || "Mujer")),
           h("li", { className: "off" }, "Posición en el catálogo: " + (d("orden") != null ? d("orden") : "100"))),
         fotos.length > 1
           ? h("div", null,

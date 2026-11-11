@@ -96,8 +96,12 @@ collections:
       - { label: "Disponibles", field: agotado, pattern: false }
       - { label: "Agotados", field: agotado, pattern: true }
       - { label: "En la portada", field: destacado, pattern: true }
+      - { label: "Mujer", field: para, pattern: "mujer" }
+      - { label: "Hombre", field: para, pattern: "hombre" }
+      - { label: "Unisex", field: para, pattern: "unisex" }
     view_groups:
       - { label: "Tipo", field: tipo }
+      - { label: "Para quién", field: para }
       - { label: "Disponibilidad", field: agotado }
     fields:
       - name: nombre
@@ -114,6 +118,15 @@ collections:
         display_fields: ["nombre"]
         options_length: 100
         hint: "Define en qué filtro del catálogo aparece. ¿Falta un tipo? Créalo en «Tipos de producto»."
+      - name: para
+        label: "¿Para quién es?"
+        widget: select
+        default: mujer
+        options:
+          - { label: "Mujer", value: "mujer" }
+          - { label: "Hombre", value: "hombre" }
+          - { label: "Unisex (sale en los dos catálogos)", value: "unisex" }
+        hint: "Define en qué catálogo aparece: Mujer, Hombre o ambos."
       - name: image
         label: Foto principal
         widget: image

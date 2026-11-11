@@ -3,6 +3,7 @@
   "destacado": true,
   "orden": 100,
   "nombre": "Cadena con dije de rosa",
-  "tipo": "collares",
-  "image": "/images/productos/colgante-floral-dorado-joha-sobre-fondo-rosa.webp"
+  "tipo": "cadenas",
+  "image": "/images/productos/colgante-floral-dorado-joha-sobre-fondo-rosa.webp",
+  "para": "mujer"
 }

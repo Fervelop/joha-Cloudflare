@@ -291,49 +291,170 @@ const Carrito = (() => {
   return { iniciar, pintar, activo: () => activo };
 })();
 
-/* ---------- catálogo ---------- */
-function pintarCatalogo(productos) {
-  const grid = $("grid");
-  grid.textContent = "";
-  if (!productos.length) {
-    grid.innerHTML = `<li class="vacio">Estamos actualizando el catálogo. Escríbenos por WhatsApp y te mostramos las piezas disponibles.</li>`;
-    return;
+/* ---------- catálogo: Mujer | Hombre, filtros por tipo y páginas de 12 ---------- */
+const POR_PAGINA = 12;
+const LINEAS = [{ slug: "mujer", nombre: "Mujer" }, { slug: "hombre", nombre: "Hombre" }];
+const Catalogo = {
+  todos: [],
+  para: "mujer",
+  tipo: "todo",
+  pagina: 1
+};
+// «Unisex» aparece en los dos catálogos; si una pieza no dice para quién, es de Mujer.
+const paraDe = p => (p.para === "hombre" || p.para === "unisex" ? p.para : "mujer");
+const enLinea = (p, linea) => paraDe(p) === linea || paraDe(p) === "unisex";
+
+function itemCatalogo(p) {
+  const li = document.createElement("li");
+  li.className = "item" + (p.agotado ? " agotado" : "");
+  li.dataset.c = p.tipo;
+  li.innerHTML = `<button type="button" class="open" aria-label="Ver ${esc(p.nombre)}${p.agotado ? ", agotado" : ""}">
+    <div class="tarjeta">${p.agotado ? '<span class="badge">Agotado</span>' : ""}${ph(p.foto, p.nombre + ", JOHA", 700, true)}${(p.fotos || []).length > 1 ? `<span class="mas-fotos">${p.fotos.length} fotos</span>` : ""}</div>
+    <h3>${esc(p.nombre)}</h3><span class="cat">${esc(CAT[p.tipo] || "")}</span></button>`;
+  li.querySelector(".open").addEventListener("click", () => abrir(p));
+  if (!p.agotado) {
+    const cot = document.createElement("div");
+    cot.className = "cot cart-ui";
+    cot.dataset.n = p.nombre;
+    li.appendChild(cot);
+  } else {
+    const ag = document.createElement("p");
+    ag.className = "cot-agot cart-ui";
+    ag.textContent = "Agotada por ahora";
+    li.appendChild(ag);
   }
-  productos.forEach(p => {
-    const li = document.createElement("li");
-    li.className = "item" + (p.agotado ? " agotado" : "");
-    li.dataset.c = p.tipo;
-    li.innerHTML = `<button type="button" class="open" aria-label="Ver ${esc(p.nombre)}${p.agotado ? ", agotado" : ""}">
-      <div class="tarjeta">${p.agotado ? '<span class="badge">Agotado</span>' : ""}${ph(p.foto, p.nombre + ", JOHA", 700, true)}${(p.fotos || []).length > 1 ? `<span class="mas-fotos">${p.fotos.length} fotos</span>` : ""}</div>
-      <h3>${esc(p.nombre)}</h3><span class="cat">${esc(CAT[p.tipo] || "")}</span></button>`;
-    li.querySelector(".open").addEventListener("click", () => abrir(p));
-    if (!p.agotado) {
-      const cot = document.createElement("div");
-      cot.className = "cot cart-ui";
-      cot.dataset.n = p.nombre;
-      li.appendChild(cot);
-    } else {
-      const ag = document.createElement("p");
-      ag.className = "cot-agot cart-ui";
-      ag.textContent = "Agotada por ahora";
-      li.appendChild(ag);
-    }
-    grid.appendChild(li);
+  return li;
+}
+
+/* selector deslizante Mujer | Hombre (solo si hay piezas de hombre) */
+function pintarLineas() {
+  const box = $("lineas");
+  const hayHombre = Catalogo.todos.some(p => paraDe(p) !== "mujer");
+  box.hidden = !hayHombre;
+  if (!hayHombre) { Catalogo.para = "mujer"; return; }
+  box.innerHTML = `<span class="lineas-ind" aria-hidden="true"></span>` + LINEAS.map(l =>
+    `<button type="button" role="tab" data-l="${l.slug}" aria-selected="${l.slug === Catalogo.para}">${l.nombre}</button>`).join("");
+  box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => cambiarLinea(b.dataset.l)));
+  box.addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const i = LINEAS.findIndex(l => l.slug === Catalogo.para);
+    const n = LINEAS[(i + (e.key === "ArrowRight" ? 1 : LINEAS.length - 1)) % LINEAS.length].slug;
+    cambiarLinea(n); box.querySelector(`[data-l="${n}"]`).focus();
   });
 }
-/* filtros: «Todo» + un botón por cada tipo que tenga piezas */
-function pintarFiltros(productos) {
+
+/* filtros: «Todo» + los tipos que existen en la línea elegida */
+function pintarFiltros() {
   const box = document.querySelector(".filters");
-  const usados = new Set(productos.map(p => p.tipo));
-  box.innerHTML = `<button type="button" data-f="todo" aria-pressed="true">Todo</button>` +
+  const usados = new Set(Catalogo.todos.filter(p => enLinea(p, Catalogo.para)).map(p => p.tipo));
+  if (Catalogo.tipo !== "todo" && !usados.has(Catalogo.tipo)) Catalogo.tipo = "todo";
+  box.innerHTML = `<button type="button" data-f="todo" aria-pressed="${Catalogo.tipo === "todo"}">Todo</button>` +
     TIPOS.filter(t => usados.has(t.slug)).map(t =>
-      `<button type="button" data-f="${esc(t.slug)}" aria-pressed="false">${esc(t.nombre)}</button>`).join("");
+      `<button type="button" data-f="${esc(t.slug)}" aria-pressed="${Catalogo.tipo === t.slug}">${esc(t.nombre)}</button>`).join("");
   box.hidden = usados.size < 2;
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    Catalogo.tipo = b.dataset.f; Catalogo.pagina = 1;
     box.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
-    const f = b.dataset.f;
-    $("grid").querySelectorAll(".item").forEach(li => li.hidden = !(f === "todo" || li.dataset.c === f));
+    pintarCatalogo();
   }));
+}
+
+function visibles() {
+  return Catalogo.todos.filter(p => enLinea(p, Catalogo.para) && (Catalogo.tipo === "todo" || p.tipo === Catalogo.tipo));
+}
+
+function pintarCatalogo(direccion) {
+  const grid = $("grid");
+  const lista = visibles();
+  const paginas = Math.max(1, Math.ceil(lista.length / POR_PAGINA));
+  Catalogo.pagina = Math.min(Math.max(1, Catalogo.pagina), paginas);
+  const desde = (Catalogo.pagina - 1) * POR_PAGINA;
+
+  document.querySelector(".catalog").dataset.para = Catalogo.para;
+  grid.textContent = "";
+  if (!Catalogo.todos.length) {
+    grid.innerHTML = `<li class="vacio">Estamos actualizando el catálogo. Escríbenos por WhatsApp y te mostramos las piezas disponibles.</li>`;
+  } else if (!lista.length) {
+    grid.innerHTML = `<li class="vacio">Pronto tendremos piezas aquí. Escríbenos por WhatsApp y te contamos qué llega.</li>`;
+  } else {
+    lista.slice(desde, desde + POR_PAGINA).forEach(p => grid.appendChild(itemCatalogo(p)));
+  }
+  if (direccion) {
+    grid.classList.remove("ent-izq", "ent-der");
+    void grid.offsetWidth;
+    grid.classList.add(direccion > 0 ? "ent-der" : "ent-izq");
+  }
+  pintarPaginas(paginas, lista.length);
+  if (typeof Carrito !== "undefined" && Carrito.activo()) Carrito.pintar(false);
+}
+
+function pintarPaginas(paginas, total) {
+  const nav = $("paginas");
+  nav.hidden = paginas < 2;
+  $("cat-cuenta").textContent = total ? `${total} ${total === 1 ? "pieza" : "piezas"}` : "";
+  if (paginas < 2) { nav.innerHTML = ""; return; }
+  const a = Catalogo.pagina;
+  // números visibles: 1 … a-1 a a+1 … última
+  const nums = [...new Set([1, a - 1, a, a + 1, paginas])].filter(n => n >= 1 && n <= paginas).sort((x, y) => x - y);
+  let html = `<button type="button" class="pg-flecha" data-p="${a - 1}" aria-label="Página anterior" ${a === 1 ? "disabled" : ""}>‹</button>`;
+  nums.forEach((n, k) => {
+    if (k && n - nums[k - 1] > 1) html += `<span class="pg-sep" aria-hidden="true">…</span>`;
+    html += `<button type="button" data-p="${n}" aria-label="Página ${n}"${n === a ? ' aria-current="page"' : ""}>${n}</button>`;
+  });
+  html += `<button type="button" class="pg-flecha" data-p="${a + 1}" aria-label="Página siguiente" ${a === paginas ? "disabled" : ""}>›</button>`;
+  nav.innerHTML = html;
+  nav.querySelectorAll("button").forEach(b => b.addEventListener("click", () => irAPagina(+b.dataset.p)));
+}
+
+function irAPagina(n) {
+  const antes = Catalogo.pagina;
+  Catalogo.pagina = n;
+  pintarCatalogo(n > antes ? 1 : -1);
+  const top = $("catalogo").getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  const actual = $("paginas").querySelector('[aria-current="page"]');
+  if (actual) actual.focus({ preventScroll: true });
+}
+
+function cambiarLinea(linea) {
+  if (linea === Catalogo.para || !LINEAS.some(l => l.slug === linea)) return;
+  const dir = LINEAS.findIndex(l => l.slug === linea) > LINEAS.findIndex(l => l.slug === Catalogo.para) ? 1 : -1;
+  Catalogo.para = linea; Catalogo.pagina = 1;
+  const box = $("lineas");
+  box.dataset.activa = linea;
+  box.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.l === linea));
+  try {
+    const u = new URL(location.href);
+    if (linea === "mujer") u.searchParams.delete("para"); else u.searchParams.set("para", linea);
+    history.replaceState(null, "", u);
+  } catch (e) {}
+  pintarFiltros();
+  pintarCatalogo(dir);
+}
+
+/* deslizar el dedo a los lados sobre el catálogo cambia de línea */
+function gestoLineas() {
+  const zona = $("grid");
+  let x0 = null, y0 = null;
+  zona.addEventListener("touchstart", e => { const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, { passive: true });
+  zona.addEventListener("touchend", e => {
+    if (x0 === null || $("lineas").hidden) return;
+    const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.6) cambiarLinea(dx < 0 ? "hombre" : "mujer");
+  }, { passive: true });
+}
+
+function iniciarCatalogo(productos) {
+  Catalogo.todos = productos;
+  let pedida = null;
+  try { pedida = new URL(location.href).searchParams.get("para"); } catch (e) {}
+  if (pedida === "hombre" && productos.some(p => paraDe(p) !== "mujer")) Catalogo.para = "hombre";
+  pintarLineas();
+  $("lineas").dataset.activa = Catalogo.para;
+  pintarFiltros();
+  pintarCatalogo();
+  gestoLineas();
 }
 
 /* ---------- ruleta de la portada ---------- */
@@ -488,8 +609,7 @@ function aplicarTextos(t) {
     .filter(p => p && p.nombre && p.foto && CAT[p.tipo]);
   aplicarAjustes(ajustes || {});
   aplicarPromo(promo, ajustes || {});
-  pintarFiltros(productos);
-  pintarCatalogo(productos);
+  iniciarCatalogo(productos);
   Carrito.iniciar(productos, (ajustes || {}).carrito_activo);
   pintarRuleta(productos, (portada || {}).ruleta);
 })();
