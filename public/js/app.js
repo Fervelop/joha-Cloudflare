@@ -420,6 +420,8 @@ function cambiarLinea(linea) {
   if (linea === Catalogo.para || !LINEAS.some(l => l.slug === linea)) return;
   const dir = LINEAS.findIndex(l => l.slug === linea) > LINEAS.findIndex(l => l.slug === Catalogo.para) ? 1 : -1;
   Catalogo.para = linea; Catalogo.pagina = 1;
+  aplicarLinea(linea);
+  pintarRuleta(null, null, linea);
   const box = $("lineas");
   box.dataset.activa = linea;
   box.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.l === linea));
@@ -445,11 +447,26 @@ function gestoLineas() {
   }, { passive: true });
 }
 
+/* colores de toda la página según la línea */
+const FRASES = { mujer: null, hombre: "Accesorios para él, con carácter y acabado en espejo." };
+function aplicarLinea(linea) {
+  const root = document.documentElement;
+  const lede = document.querySelector('[data-t="portada.texto"]');
+  if (lede) {
+    if (FRASES.mujer === null) FRASES.mujer = lede.textContent;
+    lede.textContent = linea === "hombre" ? FRASES.hombre : FRASES.mujer;
+  }
+  if (linea === "hombre") root.dataset.linea = "hombre"; else delete root.dataset.linea;
+  const m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.content = linea === "hombre" ? "#0e0d0c" : "#2a141b";
+}
+
 function iniciarCatalogo(productos) {
   Catalogo.todos = productos;
   let pedida = null;
   try { pedida = new URL(location.href).searchParams.get("para"); } catch (e) {}
   if (pedida === "hombre" && productos.some(p => paraDe(p) !== "mujer")) Catalogo.para = "hombre";
+  aplicarLinea(Catalogo.para);
   pintarLineas();
   $("lineas").dataset.activa = Catalogo.para;
   pintarFiltros();
@@ -458,49 +475,63 @@ function iniciarCatalogo(productos) {
 }
 
 /* ---------- ruleta de la portada ---------- */
-function pintarRuleta(productos, conf) {
-  conf = conf || {};
-  const disponibles = productos.filter(p => !p.agotado);
+const Ruleta = { timer: null, ms: 4000, cards: [], cur: 0, todos: [], conf: {}, iniciada: false };
+const reduceRuleta = matchMedia("(prefers-reduced-motion: reduce)");
+function ruletaLayout() {
+  const n = Ruleta.cards.length;
+  Ruleta.cards.forEach((c, k) => {
+    const off = (k - Ruleta.cur + n) % n;   // 0 centro, 1 derecha, n-1 izquierda, resto escondidas
+    const pos = off === 0 ? "center" : (off === 1 && n > 1) ? "right" : (off === n - 1 && n > 2) ? "left" : "hidden";
+    c.dataset.pos = pos;
+    c.setAttribute("aria-hidden", pos !== "center");
+  });
+}
+function ruletaPlay() {
+  // Gira siempre (también con el mouse encima). Con «reducir movimiento» cambia con un fundido.
+  if (Ruleta.cards.length > 1 && !Ruleta.timer && !document.hidden)
+    Ruleta.timer = setInterval(() => { Ruleta.cur = (Ruleta.cur + 1) % Ruleta.cards.length; ruletaLayout(); },
+      reduceRuleta.matches ? Math.max(Ruleta.ms, 5000) : Ruleta.ms);
+}
+function ruletaStop() { clearInterval(Ruleta.timer); Ruleta.timer = null; }
+
+/* Muestra las piezas destacadas de la línea elegida (Mujer u Hombre). */
+function pintarRuleta(productos, conf, linea) {
+  if (productos) Ruleta.todos = productos;
+  if (conf) Ruleta.conf = conf || {};
+  linea = linea || "mujer";
+  conf = Ruleta.conf;
+  const disponibles = Ruleta.todos.filter(p => !p.agotado && enLinea(p, linea));
   let lista;
   const propias = (Array.isArray(conf.fotos) ? conf.fotos : [])
     .filter(f => f && imgUrl(f.foto, 10))
     .map(f => ({ nombre: f.descripcion || "Pieza JOHA", foto: f.foto }));
-  if (conf.origen === "fotos" && propias.length) {
+  if (linea === "mujer" && conf.origen === "fotos" && propias.length) {
     lista = propias;
   } else {
     lista = disponibles.filter(p => p.destacado);
     if (lista.length < 3) lista = lista.concat(disponibles.filter(p => !p.destacado)).slice(0, Math.max(3, lista.length));
   }
   lista = lista.slice(0, 8);
-  const ms = Math.min(10, Math.max(2, Number(conf.segundos) || 4)) * 1000;
+  if (!lista.length) return;              // sin piezas de esa línea: se deja la ruleta actual
+  Ruleta.ms = Math.min(10, Math.max(2, Number(conf.segundos) || 4)) * 1000;
   const box = $("ruleta");
-  if (!lista.length) return;
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  const cards = lista.map(p => {
+  ruletaStop();
+  Ruleta.cards.forEach(c => c.remove());
+  Ruleta.cur = 0;
+  Ruleta.cards = lista.map(p => {
     const d = document.createElement("div");
     d.className = "tarjeta rc";
     d.innerHTML = ph(p.foto, p.nombre, 900, false);
     box.insertBefore(d, box.firstChild);
     return d;
   });
-  const n = cards.length;
-  let cur = 0, timer = null;
-  function layout() {
-    cards.forEach((c, k) => {
-      const off = (k - cur + n) % n;            // 0 centro, 1 derecha, n-1 izquierda, resto escondidas
-      const pos = off === 0 ? "center" : (off === 1 && n > 1) ? "right" : (off === n - 1 && n > 2) ? "left" : "hidden";
-      c.dataset.pos = pos;
-      c.setAttribute("aria-hidden", pos !== "center");
-    });
+  ruletaLayout();
+  if (!Ruleta.iniciada) {
+    Ruleta.iniciada = true;
+    document.addEventListener("visibilitychange", () => document.hidden ? ruletaStop() : ruletaPlay());
+    reduceRuleta.addEventListener("change", () => { ruletaStop(); ruletaPlay(); });
   }
-  const next = () => { cur = (cur + 1) % n; layout(); };
-  // Gira siempre (también con el mouse encima). Con «reducir movimiento» activo
-  // en el sistema, cambia con un fundido suave en vez de desplazarse.
-  const play = () => { if (n > 1 && !timer && !document.hidden) timer = setInterval(next, reduce.matches ? Math.max(ms, 5000) : ms); };
-  const stop = () => { clearInterval(timer); timer = null; };
-  document.addEventListener("visibilitychange", () => document.hidden ? stop() : play());
-  reduce.addEventListener("change", () => { stop(); play(); });
-  layout(); play();
+  ruletaPlay();
 }
 
 /* ---------- ajustes generales ---------- */
@@ -605,11 +636,12 @@ function aplicarTextos(t) {
     CAT = Object.fromEntries(TIPOS.map(t => [t.slug, t.etiqueta || t.nombre]));
   }
   aplicarTextos(Object.assign({}, textos, { portada: Object.assign({}, (textos || {}).portada, portada) }));
+  if (portada && typeof portada.texto_hombre === "string" && portada.texto_hombre.trim()) FRASES.hombre = portada.texto_hombre;
   const productos = (Array.isArray(datos.productos) ? datos.productos : [])
     .filter(p => p && p.nombre && p.foto && CAT[p.tipo]);
   aplicarAjustes(ajustes || {});
   aplicarPromo(promo, ajustes || {});
   iniciarCatalogo(productos);
   Carrito.iniciar(productos, (ajustes || {}).carrito_activo);
-  pintarRuleta(productos, (portada || {}).ruleta);
+  pintarRuleta(productos, (portada || {}).ruleta, Catalogo.para);
 })();

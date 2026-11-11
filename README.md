@@ -49,7 +49,7 @@ en los pasos 3 y 4.
 
 ### Página
 - **Portada** con el logo, frase, línea del rodio y tarjetas que giran como ruleta.
-- **Catálogo** con selector deslizante **Mujer | Hombre** (las piezas Unisex salen en ambos; la línea Hombre usa un acento sobrio dorado), filtros por tipo según la línea, **12 piezas por página** con flechas y números, etiqueta «Agotado» y vista ampliada con galería. En celular se cambia de línea deslizando el dedo; `?para=hombre` abre directo el catálogo de hombre.
+- **Catálogo** con selector deslizante **Mujer | Hombre** (las piezas Unisex salen en ambos). Al elegir **Hombre**, toda la página cambia a negro y dorado, la ruleta muestra piezas de hombre y la frase de la portada cambia, filtros por tipo según la línea, **12 piezas por página** con flechas y números, etiqueta «Agotado» y vista ampliada con galería. En celular se cambia de línea deslizando el dedo; `?para=hombre` abre directo el catálogo de hombre.
 - **Calidad que perdura**: baño de rodio, no se oxida, no se mancha, acabado en espejo.
 - **Cuida tus piezas**: guía de seis consejos.
 - **Nuestra esencia** y **Cómo pedir** (tres pasos).
@@ -173,12 +173,24 @@ Para dar acceso a otra persona: GitHub → Fervelop/JOHA → Settings → Collab
 | `scripts/build.js` | Construye `dist/` en cada publicación |
 | `scripts/compilar.js` | Une tipos y fichas en `dist/data/tipos.json` y `productos.json` |
 
-### Probar en el computador (opcional)
+### Probar en el computador
+Requisitos: Node.js 20 o superior y Git.
+
+**Ver la página**
 ```
 npm run build
-npx wrangler pages dev dist
+npx serve dist -l 3000
 ```
-Para el panel en local se necesita un archivo `.dev.vars` con `GITHUB_CLIENT_ID` y `GITHUB_CLIENT_SECRET` de una app OAuth con callback `http://localhost:8788/api/callback` (no subir ese archivo).
+Abrir http://localhost:3000. Después de cambiar archivos, volver a correr `npm run build`.
+
+**Usar el panel en local (sin GitHub)** — en otra terminal, en la carpeta del proyecto:
+```
+npx decap-server
+```
+Abrir http://localhost:3000/admin → «Iniciar sesión». Los cambios se guardan en los archivos del
+computador (no en internet). Para verlos en la página: `npm run build`. Para publicarlos: `git add`, `git commit`, `git push`.
+
+**Simular Cloudflare** (cabeceras de seguridad y funciones): `npx wrangler pages dev dist` → http://localhost:8788.
 
 ### Subir cambios hechos fuera del panel
 ```

@@ -183,7 +183,8 @@ collections:
         file: public/data/portada.json
         description: "Lo primero que se ve al entrar: la frase y las tarjetas que giran."
         fields:
-          - { name: texto, label: "Frase debajo del logo", widget: text }
+          - { name: texto, label: "Frase debajo del logo (catálogo Mujer)", widget: text }
+          - { name: texto_hombre, label: "Frase debajo del logo (catálogo Hombre)", widget: text, required: false }
           - { name: rodio, label: "Línea del rodio (con el ícono de diamante)", widget: string }
           - name: ruleta
             label: "Tarjetas que giran"

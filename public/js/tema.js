@@ -4,3 +4,8 @@ try {
   var t = localStorage.getItem("joha-tema");
   if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
 } catch (e) {}
+
+/* Línea Hombre (negro y dorado) si el enlace lo pide: ?para=hombre */
+try {
+  if (new URLSearchParams(location.search).get("para") === "hombre") document.documentElement.dataset.linea = "hombre";
+} catch (e) {}
